@@ -1,0 +1,208 @@
+<resources>
+    <string name="app_name">Medical Mentoring</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="txtEmail">E-mail</string>
+    <string name="txtAnno">Anno iscrizione</string>
+    <string name="txtNumero">Numero iscrizione</string>
+    <string name="txtProv">Provincia iscrizione</string>
+    <string name="txtDatiAlbo">Dati Albo</string>
+    <string name="btnRegistrazione">Registrati</string>
+
+    <string-array name="arrayProvince">
+        <item>Agrigento (AG)</item>
+        <item>Alessandria (AL)</item>
+        <item>Ancona (AN)</item>
+        <item>Aosta (AO)</item>
+        <item>Aquila (AQ)</item>
+        <item>Arezzo (AR)</item>
+        <item>Ascoli-Piceno (AP)</item>
+        <item>Asti (AT)</item>
+        <item>Avellino (AV)</item>
+        <item>Bari (BA)</item>
+        <item>Barletta-Andria-Trani (BT)</item>
+        <item>Belluno (BL)</item>
+        <item>Benevento (BN)</item>
+        <item>Bergamo (BG)</item>
+        <item>Biella (BI)</item>
+        <item>Bologna (BO)</item>
+        <item>Bolzano (BZ)</item>
+        <item> Brescia (BS)</item>
+        <item>Brindisi (BR)</item>
+        <item>Cagliari (CA)</item>
+        <item>Caltanissetta (CL)</item>
+        <item>Campobasso (CB)</item>
+        <item>Carbonia Iglesias (CI)</item>
+        <item>Caserta (CE)</item>
+        <item>Catania (CT)</item>
+        <item>Catanzaro (CZ)</item>
+        <item>Chieti (CH)</item>
+        <item>Como (CO)</item>
+        <item>Cosenza (CS)</item>
+        <item>Cremona (CR)</item>
+        <item>Crotone (KR)</item>
+        <item>Cuneo (CN)</item>
+        <item>Enna (EN)</item>
+        <item>Fermo (FM)</item>
+        <item>Ferrara (FE)</item>
+        <item>Firenze (FI)</item>
+        <item>Foggia (FG)</item>
+        <item>Forli-Cesena (FC)</item>
+        <item>Frosinone (FR)</item>
+        <item>Genova (GE)</item>
+        <item>Gorizia (GO)</item>
+        <item>Grosseto (GR)</item>
+        <item>Imperia (IM)</item>
+        <item>Isernia (IS)</item>
+        <item>La-Spezia (SP)</item>
+        <item>Latina (LT)</item>
+        <item>Lecce (LE)</item>
+        <item>Lecco (LC)</item>
+        <item>Livorno (LI)</item>
+        <item>Lodi (LO)</item>
+        <item>Lucca (LU)</item>
+        <item>Macerata (MC)</item>
+        <item>Mantova (MN)</item>
+        <item>Massa-Carrara (MS)</item>
+        <item>Matera (MT)</item>
+        <item>Medio Campidano (VS)</item>
+        <item>Messina (ME)</item>
+        <item>Milano (MI)</item>
+        <item>Modena (MO)</item>
+        <item>Monza-Brianza (MB)</item>
+        <item>Napoli (NA)</item>
+        <item>Novara (NO)</item>
+        <item>Nuoro (NU)</item>
+        <item>Ogliastra (OG)</item>
+        <item>Olbia Tempio (OT)</item>
+        <item>Oristano (OR)</item>
+        <item>Padova (PD)</item>
+        <item>Palermo (PA)</item>
+        <item>Parma (PR)</item>
+        <item>Pavia (PV)</item>
+        <item>Perugia (PG)</item>
+        <item>Pesaro-Urbino (PU)</item>
+        <item>Pescara (PE)</item>
+        <item>Piacenza (PC)</item>
+        <item>Pisa (PI)</item>
+        <item>Pistoia (PT)</item>
+        <item>Pordenone (PN)</item>
+        <item>Potenza (PZ)</item>
+        <item>Prato (PO)</item>
+        <item>Ragusa (RG)</item>
+        <item>Ravenna (RA)</item>
+        <item>Reggio-Calabria (RC)</item>
+        <item>Reggio-Emilia (RE)</item>
+        <item>Rieti (RI)</item>
+        <item>Rimini (RN)</item>
+        <item>Roma (Roma)</item>
+        <item>Rovigo (RO)</item>
+        <item>Salerno (SA)</item>
+        <item>Sassari (SS)</item>
+        <item>Savona (SV)</item>
+        <item>Siena (SI)</item>
+        <item>Siracusa (SR)</item>
+        <item>Sondrio (SO)</item>
+        <item>Taranto (TA)</item>
+        <item>Teramo (TE)</item>
+        <item>Terni (TR)</item>
+        <item>Torino (TO)</item>
+        <item>Trapani (TP)</item>
+        <item>Trento (TN)</item>
+        <item>Treviso (TV)</item>
+        <item>Trieste (TS)</item>
+        <item>Udine (UD)</item>
+        <item>Varese (VA)</item>
+        <item>Venezia (VE)</item>
+        <item>Verbania (VB)</item>
+        <item>Vercelli (VC)</item>
+        <item>Verona (VR)</item>
+        <item>Vibo-Valentia (VV)</item>
+        <item>Vicenza (VI)</item>
+        <item>Viterbo (VT)</item>
+    </string-array>
+
+    <string-array name="specializzazioni">
+        <item>Allergologia</item>
+        <item>Anatomia patologica</item>
+        <item>Andrologia</item>
+        <item>Anestesia e rianimazione</item>
+        <item>Angiologia</item>
+        <item>Cardiochirurgia</item>
+        <item>Cardiologia</item>
+        <item>Chirurgia vascolare</item>
+        <item>Dermatologia</item>
+        <item>Dietetica</item>
+        <item>Ematologia</item>
+        <item>Embriologia</item>
+        <item>Endrocrinologia</item>
+        <item>Epatologia</item>
+        <item>Epidemiologia</item>
+        <item>Gastroenterologia</item>
+        <item>Genetica</item>
+        <item>Geriatria</item>
+        <item>Ginecologia e ostetricia</item>
+        <item>Igiene e medicina preventiva</item>
+        <item>Immunologia</item>
+        <item>Infettivologia</item>
+        <item>Istologia</item>
+        <item>Logopedia</item>
+        <item>Medicina aeronautica</item>
+        <item>Medicina del lavoro</item>
+        <item>Medicina generale</item>
+        <item>Medicina sportiva</item>
+        <item>Nefrologia</item>
+        <item>Neonatologia</item>
+        <item>Neurologia</item>
+        <item>Neuroscienze</item>
+        <item>Odontoiatria</item>
+        <item>Oftalmologia</item>
+        <item>Oncologia</item>
+        <item>Ortopedia</item>
+        <item>Otorinolaringoiatria</item>
+        <item>Pediatria</item>
+        <item>Pneumologia</item>
+        <item>Psichiatria</item>
+        <item>Radiologia</item>
+        <item>Radioterapia</item>
+        <item>Reumatologia</item>
+        <item>Sessuologia</item>
+        <item>Traumatologia</item>
+        <item>Medicina d\'urgenza</item>
+        <item>Urologia</item>
+        <item>Nanomedicina</item>
+        <item>Psicodermatologia</item>
+        <item>Chirurgia toracica</item>
+        <item>Neuroncologia</item>
+        <item>Flebologia</item>
+        <item>Senologia</item>
+        <item>Neurochirurgia</item>
+        <item>Chirurgia generale</item>
+
+    </string-array>
+
+    <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
+    <string name="title_activity_profilo">Profilo</string>
+    <string name="txtBtnAppuntamenti">Appuntamenti</string>
+    <string name="txtBtnDisponibilità">Disponibilità</string>
+    <string name="txtBtnGestioneProfilo">Gestisci account</string>
+    <string name="title_activity_appuntamenti">Appuntamenti</string>
+    <string name="title_activity_disponibilita">Disponibilita</string>
+    <string name="title_activity_gestione_account">Gestione Account</string>
+    <string name="txtBtnAccesso">Login</string>
+    <string name="txtViewPassword">Password</string>
+    <string name="txtViewUsername">Username</string>
+    <string name="txtViewRegistrati">Registrati</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="accedi">Accedi</string>
+    <string name="registrati">Registrati</string>
+    <string name="title_activity_registrati">Registrati</string>
+    
+    <string name="hello_world">Hello world!</string>
+    <string name="anno_iscrizione">anno iscrizione</string>
+    <string name="numero_iscrizione">numero iscrizione</string>
+    <string name="title_activity_home">Home</string>
+
+</resources>
