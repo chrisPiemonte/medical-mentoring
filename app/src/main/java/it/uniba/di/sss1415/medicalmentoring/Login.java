@@ -52,7 +52,7 @@ public class Login extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-    
+
         //per il login
         editUsername = (EditText) findViewById(R.id.emailET);
         editPassword = (EditText) findViewById(R.id.passwordET);
