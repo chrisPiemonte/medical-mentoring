@@ -108,7 +108,7 @@ public class Home extends ActionBarActivity {
             case R.id.action_settings:
                 return true;
         }
-        
+
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -195,5 +195,7 @@ public class Home extends ActionBarActivity {
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
+
+    
 }
 
