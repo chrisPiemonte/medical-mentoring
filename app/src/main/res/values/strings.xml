@@ -204,5 +204,6 @@
     <string name="anno_iscrizione">anno iscrizione</string>
     <string name="numero_iscrizione">numero iscrizione</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_calendar">Calendar</string>
 
 </resources>
