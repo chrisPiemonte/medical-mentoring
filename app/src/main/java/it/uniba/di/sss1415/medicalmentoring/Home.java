@@ -3,16 +3,23 @@ package it.uniba.di.sss1415.medicalmentoring;
 //import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.ActionBar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 public class Home extends ActionBarActivity {
@@ -20,22 +27,96 @@ public class Home extends ActionBarActivity {
     CustomPagerAdapter mCustomPagerAdapter;
     ViewPager mViewPager;
 
+    // Elementi per il Drawer
+    private String[] menuItems;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
+
+    // Titoli nell' ActionBar quando il drawer menu è aperto/chiuso
+    private CharSequence mDrawerTitle = "Menu";
+    private CharSequence mTitle = "Home";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        /*if (savedInstanceState == null)
-        {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.homeFrame, new Appuntamenti()).commit();
 
-        }*/
+        // Per il menu laterale
+        menuItems = getResources().getStringArray(R.array.arrayDrawerMenu);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
+        // ------ Per settare il bottone nell' ActionBar che fa aprire il menu laterale(Drawer)
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(mTitle);
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle(mDrawerTitle);
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, menuItems));
+        mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+                selectItem(position);
+            }
+        });
+
+
+        // Per le tab a scorrimento
         mCustomPagerAdapter = new CustomPagerAdapter(getSupportFragmentManager(), this);
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
     }
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                mostraCalendar();
+                return true;
+            case R.id.action_settings:
+                return true;
+        }
+        
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle your other action bar items...
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     // ------ da qui per le modifiche per i bottoni sulla barra
     @Override
@@ -45,22 +126,7 @@ public class Home extends ActionBarActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()){
-            case R.id.action_search:
-                mostraCalendar();
-                return true;
-            case R.id.action_settings:
-                return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 
     public  void mostraCalendar(){
         Intent apri = new Intent(Home.this, Calendar.class);
@@ -68,7 +134,7 @@ public class Home extends ActionBarActivity {
     }
 
 
-
+    // CustomAdapter per le tab a scorrimento della ActionBar
     class CustomPagerAdapter extends FragmentPagerAdapter {
 
         Context mContext;
@@ -104,14 +170,30 @@ public class Home extends ActionBarActivity {
 
     }
 
-    /*<FrameLayout
-    android:id="@+id/homeFrame"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true">
+    // Metodo che apre una Activity dopo il click nel Drawer
+    private void selectItem(int pos){
 
-    </FrameLayout>*/
+        switch(pos){
+            case 0:
+                Intent i = new Intent(Home.this, Profilo.class);
+                startActivity(i);
+                break;
+            case 1:
+                Intent in = new Intent(Home.this, Profilo.class);
+                startActivity(in);
+                break;
+            case 2:
+                Intent intent = new Intent(Home.this, Profilo.class);
+                startActivity(intent);
+                break;
+
+        }
+        if(pos == 0){
+            Intent i = new Intent(Home.this, Login.class);
+        }
+        mDrawerList.setItemChecked(pos, true);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
 
 }
+

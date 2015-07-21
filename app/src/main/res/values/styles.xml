@@ -5,6 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
     </style>
 
 
@@ -12,6 +14,8 @@
     <style name = "NoActionBar" parent = "Theme.AppCompat.Light.NoActionBar">
         <item name = "android:windowActionBar">false</item>
         <item name = "android:windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+
     </style>
 
 
@@ -22,12 +26,19 @@
 
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+
+        <item name="elevation">0dp</item>
     </style>
 
 
     <!-- ActionBar title text -->
     <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- ActionBar colore dell' Hamburger -->
+    <style name="MyDrawerArrowToggle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/white</item>
     </style>
 
 
