@@ -1,15 +1,23 @@
 <resources>
     
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        //<item name = "android:windowActionBar">false</item>
-        //<item name = "android:windowNoTitle">true</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
+
+
 
     <style name = "NoActionBar" parent = "Theme.AppCompat.Light.NoActionBar">
         <item name = "android:windowActionBar">false</item>
         <item name = "android:windowNoTitle">true</item>
     </style>
+
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/green</item>
+        <item name="background">@color/green</item>
+    </style>
+
+
 
 </resources>
