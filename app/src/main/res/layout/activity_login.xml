@@ -32,7 +32,9 @@
                 android:layout_alignEnd="@+id/passwordET"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:text="chris.piemo@afa.com"
+                android:inputType="textEmailAddress"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -42,7 +44,9 @@
         android:hint="@string/password"
         android:padding="15dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:text="piemo"
+        android:inputType="textPassword"/>
 
             <Button
         android:layout_width="wrap_content"

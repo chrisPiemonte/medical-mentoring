@@ -49,8 +49,6 @@ public class Registrati extends ActionBarActivity {
     public DatiUtente datiUser;
 
     //pop up
-    private CharSequence textErrorLogin = "Username o password errati!";
-    private CharSequence textOkRegistration = "Registrazione Completata!";
     private CharSequence textErrorSignInNotComplete = "Riempire tutti i campi";
     int duration = Toast.LENGTH_LONG;
     private Toast toastMessage;

@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class Home extends FragmentActivity {
+public class Home extends ActionBarActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
