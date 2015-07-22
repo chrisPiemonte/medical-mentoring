@@ -219,5 +219,21 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cognome">Cognome</string>
+    <string name="nome">Nome</string>
+    <string name="informazioni_personali">Dati Anagrafici</string>
+    <string name="informazioni_dottori">Iscrizione all\'albo</string>
+    <string name="specializzazione">Specializzazione</string>
+    <string name="cambia_psw">Cambia Password</string>
+    <string name="modifica">Modifica</string>
+
+    <string name="sei_sicuro">"Sei sicuro di voler modificare ?"</string>
+    <string name="si">"si"</string>
+    <string name="no">"no"</string>
+    <string name="vecchia_password">Vecchia Password</string>
+    <string name="nuova_password">Nuova Password</string>
+    <string name="annulla">Annulla</string>
+    <string name="ok">Ok</string>
+
 
 </resources>

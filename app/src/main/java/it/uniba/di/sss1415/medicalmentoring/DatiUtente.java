@@ -29,7 +29,7 @@ public class DatiUtente {
     DatiUtente(String dati) {
 
 
-        String[] datiRicevuti = dati.toString().split(",", 10);
+        String[] datiRicevuti = dati.toString().split(",", 13);
 
         email = datiRicevuti[0];
         pass = datiRicevuti[1];
@@ -39,31 +39,16 @@ public class DatiUtente {
         annoIscr = datiRicevuti[5];
         nome = datiRicevuti[6];
         cognome = datiRicevuti[7];
-        primariaEx = datiRicevuti[8];
-        Log.i("PRIMARIA = ", primariaEx);
-/*
-        try{
-            JSONObject j = new JSONObject();
-            j.put("email", "gigi@afa.com");
-            j.put("nome", "gigi");
-            j.put("cognome", "pigi");
-            j.put("provincia", "Foggia (FG)");
-            j.put("anno", "2000");
-            j.put("numero", "1000");
-            j.put("primaEx", "Neonatologia");
-            j.put("altreEx", "Medicina sportiva");
 
-            String param = Parametri.generaParametri("modificaP", "change", j.toString());
-            String serverAnswer = Server.sendRequest("POST", param);
-            Log.i("DATI_UTENTE_INV = ", param);
-            Log.i("DATI_UTENTE_RIC = ", serverAnswer + " -.-");
-        } catch( Exception e){
+        try {
+            primariaEx = datiRicevuti[11];
+        } catch (Exception e){
             e.printStackTrace();
-            Log.i("DATI_UTENTE_MALE = ", "MALE");
-        }*/
+        }
+        if (primariaEx == null || primariaEx.equals(""))
+            primariaEx = datiRicevuti[8];
 
-        //listaExpertise = JSONManager.toList(datiRicevuti[9]);
-
+        Log.i("PRIMARIA = ", primariaEx);
     }
 
 
