@@ -67,12 +67,6 @@ public class InserisciRichiesta extends AppCompatActivity {
         aBTN.setText(to);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -243,6 +243,11 @@
     <string name="cerca">Cerca</string>
     <string name="title_activity_richiesta">Richiesta</string>
     <string name="title_activity_inserisci_disponibilita">InserisciDisponibilita</string>
+    <string name="una_volta">Una volta</string>
+    <string name="ogni_settimana">Settimanale</string>
+    <string name="bisettimanale">Bisettimanale</string>
+    <string name="fino_a_data">Fino a data</string>
+    <string name="disponibilita_inserita">Disponibilita inserita</string>
 
 
 </resources>
