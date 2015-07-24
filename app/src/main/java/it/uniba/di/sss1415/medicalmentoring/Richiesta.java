@@ -40,10 +40,7 @@ public class Richiesta extends AppCompatActivity {
 
 
     //variabili per l utilizzo del dialog
-    final Dialog dialog = new Dialog(this);
-    Button ok = (Button) dialog.findViewById(R.id.okBTN);
-    Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
-    TextView message = (TextView) findViewById(R.id.richiestaTV);
+
     final String TEXT = "Nessun risultato trovato. Inviare la richiesta al server per la ricerca automatica ?";
 
 
@@ -56,7 +53,13 @@ public class Richiesta extends AppCompatActivity {
         setContentView(R.layout.activity_richiesta);
 
         //per il dialog
+
+        final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_richiesta);
+        Button ok = (Button) dialog.findViewById(R.id.okBTN);
+        Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
+        TextView message = (TextView) dialog.findViewById(R.id.richiestaTV);
+
 
         Intent ricevuto = getIntent();
         from = ricevuto.getStringExtra("oraInizio");
@@ -72,7 +75,7 @@ public class Richiesta extends AppCompatActivity {
         listaApp = JSONManager.toListOfMap(serverAnswer, diz.chiaveAccesso);
         listaApp = controllaJson(listaApp);
         //se non sono stati trovati interventi relativi alla ricerca, mandiamo un dialog
-        if (listaApp == null){
+        if (listaApp.isEmpty()){
             message.setText(TEXT);
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -150,10 +153,9 @@ public class Richiesta extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        if(!temp.isEmpty()){
+
             return temp;
-        }
-        return null;
+
 
 
 
