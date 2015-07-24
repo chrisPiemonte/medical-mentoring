@@ -102,6 +102,9 @@ public class Home extends ActionBarActivity {
         // true, then it has handled the app icon touch event
 
         switch (item.getItemId()) {
+            case R.id.action_disponibilita:
+                nuovaDisp();
+                return true;
             case R.id.action_search:
                 mostraSearch();
                 return true;
@@ -131,6 +134,11 @@ public class Home extends ActionBarActivity {
     public  void mostraSearch(){
         Intent apri = new Intent(Home.this, InserisciRichiesta.class);
         startActivity(apri);
+    }
+
+    public void nuovaDisp() {
+        Intent apriDisp = new Intent(Home.this, InserisciDisponibilita.class);
+        startActivity(apriDisp);
     }
 
 

@@ -51,7 +51,11 @@
         <activity
             android:name=".Richiesta"
             android:label="@string/title_activity_richiesta"
-            android:parentActivityName=".InserisciRichiesta">
+            android:parentActivityName=".InserisciRichiesta" >
+        </activity>
+        <activity
+            android:name=".InserisciDisponibilita"
+            android:label="@string/title_activity_inserisci_disponibilita" >
         </activity>
     </application>
 

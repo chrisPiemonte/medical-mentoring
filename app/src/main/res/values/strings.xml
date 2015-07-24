@@ -242,6 +242,7 @@
     <string name="orario">Orario</string>
     <string name="cerca">Cerca</string>
     <string name="title_activity_richiesta">Richiesta</string>
+    <string name="title_activity_inserisci_disponibilita">InserisciDisponibilita</string>
 
 
 </resources>

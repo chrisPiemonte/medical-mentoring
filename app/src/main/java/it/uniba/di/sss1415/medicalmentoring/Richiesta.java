@@ -43,7 +43,8 @@ public class Richiesta extends AppCompatActivity {
 
         Parametri diz = new Parametri("dateDisp");
         diz.value = new String[]{data,from,to,"","",""};
-        param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, diz.toJsonObj().toString());
+        //diz.toJsonObj().toString()
+        param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, "");
         String serverAnswer = ServerManager.sendRequest("POST",param);
 
         listaApp = JSONManager.toListOfMap(serverAnswer, diz.chiaveAccesso);
