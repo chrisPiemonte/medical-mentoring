@@ -234,6 +234,14 @@
     <string name="nuova_password">Nuova Password</string>
     <string name="annulla">Annulla</string>
     <string name="ok">Ok</string>
+    <string name="title_activity_inserisci_richiesta">InserisciRichiesta</string>
+    <string name="inserisci_dati">Inserisci i Dati</string>
+    <string name="seleziona_data">Scegli una data</string>
+    <string name="da">Da</string>
+    <string name="a">a</string>
+    <string name="orario">Orario</string>
+    <string name="cerca">Cerca</string>
+    <string name="title_activity_richiesta">Richiesta</string>
 
 
 </resources>

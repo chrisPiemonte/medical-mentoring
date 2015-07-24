@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:id="@+id/okBTN"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:padding="20dp"
+        android:layout_alignTop="@+id/annullaBTN"
+        android:layout_alignRight="@+id/datePicker"
+        android:layout_alignEnd="@+id/datePicker"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/annulla"
+        android:id="@+id/annullaBTN"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:padding="20dp"
+        android:layout_below="@+id/datePicker"
+        android:layout_toLeftOf="@+id/okBTN"
+        android:layout_toStartOf="@+id/okBTN"
+        />
+
+</RelativeLayout>

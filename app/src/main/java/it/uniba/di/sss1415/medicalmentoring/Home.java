@@ -103,7 +103,7 @@ public class Home extends ActionBarActivity {
 
         switch (item.getItemId()) {
             case R.id.action_search:
-                mostraCalendar();
+                mostraSearch();
                 return true;
             case R.id.action_settings:
                 return true;
@@ -128,8 +128,8 @@ public class Home extends ActionBarActivity {
     }
 
 
-    public  void mostraCalendar(){
-        Intent apri = new Intent(Home.this, Calendar.class);
+    public  void mostraSearch(){
+        Intent apri = new Intent(Home.this, InserisciRichiesta.class);
         startActivity(apri);
     }
 
