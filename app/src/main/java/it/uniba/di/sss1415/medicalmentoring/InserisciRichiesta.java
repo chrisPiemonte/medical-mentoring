@@ -19,7 +19,9 @@ import android.widget.TimePicker;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class InserisciRichiesta extends AppCompatActivity {
 
@@ -195,6 +197,16 @@ public class InserisciRichiesta extends AppCompatActivity {
         apriRic.putExtra("oraInizio",from);
         apriRic.putExtra("oraFine",to);
         startActivity(apriRic);
+
+        Parametri diz = new Parametri("mieRichiesteInserite");
+        diz.value = new String[] { "", data, from, to, specSP.getSelectedItem().toString(), "", "", "", ""};
+
+        ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieRichieste();
+        HashMap<String, String> map = new HashMap<String, String>();
+        for(int i = 0; i < diz.value.length; i++){
+            map.put(diz.keyOfMap[i], diz.value[i]);
+        }
+        leMieDisp.add(map);
     }
 
 

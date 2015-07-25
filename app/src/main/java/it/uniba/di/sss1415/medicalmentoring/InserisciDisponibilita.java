@@ -267,6 +267,17 @@ public class InserisciDisponibilita extends ActionBarActivity {
         param = Parametri.generaParametri(TIPO_ELEMENTO_DD, ACCESSO, dizDD.toJsonObj().toString());
         ServerManager.sendRequest("POST", param);
 
+
+
+        ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();
+        HashMap<String, String> map = new HashMap<String, String>();
+        for(int i = 0; i < diz.value.length; i++){
+            map.put(diz.keyOfMap[i], diz.value[i]);
+        }
+        leMieDisp.add(map);
+
+
+
         Toast toastMessage = Toast.makeText(getApplicationContext(), R.string.disponibilita_inserita, Toast.LENGTH_LONG);
         toastMessage.show();
     }

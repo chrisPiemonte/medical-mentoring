@@ -21,6 +21,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class Home extends ActionBarActivity {
 
@@ -109,6 +112,8 @@ public class Home extends ActionBarActivity {
                 mostraSearch();
                 return true;
             case R.id.logout:
+                SharedStorageApp.getInstance().cleanLeMieDisponibilita();
+                SharedStorageApp.getInstance().cleanLeMieRichieste();
                 finish();
                 return true;
         }

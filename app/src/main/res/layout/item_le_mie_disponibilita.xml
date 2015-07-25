@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/material_card"
+        android:paddingBottom="15dp"
+        android:elevation="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewdataFrom"
+            android:textSize="25sp"
+            android:text="Notifica"
+            android:background="#455A64"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewRipetizione"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDataTo"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="55dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewOraInizio"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="55dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewOraFine"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="55dp"/>
+
+
+    </LinearLayout>
+</RelativeLayout>

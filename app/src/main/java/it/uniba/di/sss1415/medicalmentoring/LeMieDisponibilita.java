@@ -4,15 +4,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LeMieDisponibilita extends AppCompatActivity {
-    
+
+    public ListAdapter adapter;
+    ListView list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_le_mie_disponibilita);
+
+        list = (ListView) findViewById(R.id.mieDispLV);
+        ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();
+
+        adapter = new SimpleAdapter(this,
+                leMieDisp,
+                R.layout.item_le_mie_disponibilita,
+                new String[] {"data", "fineRipetizione", "oraInizio", "oraFine", "ripetizione"},
+                new int[]{R.id.textViewdataFrom, R.id.textViewDataTo, R.id.textViewOraInizio,
+                        R.id.textViewOraFine, R.id.textViewRipetizione});
+        list.setAdapter(adapter);
+
     }
-    
+
+
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
