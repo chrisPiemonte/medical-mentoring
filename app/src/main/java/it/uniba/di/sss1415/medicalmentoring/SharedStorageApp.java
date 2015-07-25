@@ -39,7 +39,7 @@ public class SharedStorageApp extends Application {
     }
 
     public ArrayList<HashMap<String, String>> getLeMieRichieste(){
-        return LeMieDisponibilita;
+        return LeMieRichieste;
     }
 
     public void cleanLeMieDisponibilita(){

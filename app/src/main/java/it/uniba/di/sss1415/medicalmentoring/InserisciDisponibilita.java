@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -58,6 +59,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
     RadioButton una;
     RadioButton settimanale;
     RadioButton bisettimanale;
+    RadioGroup checkRG;
     String ripetizione = "";
 
     int yearTo = yearFrom;
@@ -75,11 +77,15 @@ public class InserisciDisponibilita extends ActionBarActivity {
         daBTN = (Button) findViewById(R.id.inizioBTN);
         aBTN = (Button) findViewById(R.id.fineBTN);
         toDateBTN = (Button) findViewById(R.id.finoADataBTN);
+        checkRG = (RadioGroup) findViewById(R.id.checkRG);
+        checkRG.check(R.id.one);
 
         una = (RadioButton) findViewById(R.id.one);
         settimanale = (RadioButton) findViewById(R.id.onceAWeek);
         bisettimanale = (RadioButton) findViewById(R.id.twiceAWeek);
 
+        //  ------  Formatto la data, divisa da trattini ed aggiungendo gli zero per numeri
+        //  ------  minori di dieci
         dataFrom = yearFrom + "-" + String.format("%02d", monthFrom) + "-" + String.format("%02d", dayFrom);
         fromDateBTN.setText(dataFrom);
 
@@ -91,6 +97,30 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
         dataTo = yearTo + "-" + String.format("%02d", monthTo) + "-" + String.format("%02d", dayTo);
         toDateBTN.setText(dataTo);
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //  ------ Salvo le istanze dei bottoni in caso l'activity venga posta in "Landscape"
+        outState.putString("mydataTo", dataTo);
+        outState.putString("mydataFrom", dataFrom);
+        outState.putString("myTimeFrom", timeFrom);
+        outState.putString("myTimeTo", timeTo);
+
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // ------ Assegno i valori alle varibili salvate in precedenza
+        toDateBTN.setText(savedInstanceState.getString("mydataTo"));
+        fromDateBTN.setText(savedInstanceState.getString("mydataFrom"));
+        daBTN.setText(savedInstanceState.getString("myTimeFrom"));
+        aBTN.setText(savedInstanceState.getString("myTimeTo"));
+
 
     }
 
@@ -139,6 +169,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
     public void showDatePicker(View v){
 
+        //  ------ Il metodo mostra il dialog per inserire la data
         final View callerView = v;
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_date_picker);
@@ -183,6 +214,8 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
 
     public void showTimePicker(View v){
+        //  ------ Il metodo mostra il dialog per inserire l'orario
+
         final View callerView = v;
 
         final Dialog dialog = new Dialog(this);
@@ -224,6 +257,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
     public void inserisciClick(View v){
 
+        //  ------ Il metodo mostra il dialog per la conferma
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_richiesta);
         dialog.setTitle("Conferma");
@@ -253,15 +287,25 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
     public void disponibilitaInviata(){
 
+        //  ------ Il metodo invia la disponibilita' appena inserita
+
+
+        //  ------ Prendo i dati relativi all'utente
         DatiUtente datiUser = SharedStorageApp.getInstance().getDatiUtente();
 
+        //  ------ Creo il dizionario con gli attributi "dispon"
         Parametri diz = new Parametri("dispon");
+        //  ------ Popolo il dizionario creato
         diz.value = new String[] {"", dataFrom, timeFrom, timeTo, datiUser.getPrimariaEx(), ripetizione, dataTo, datiUser.getEmail()};
 
+        //  ------ Genero i parametri relativi ai tipi d'accesso
         param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, diz.toJsonObj().toString());
 
+        //  ------ Mando la richiesta al server con i parametri
         String serverAnswer = ServerManager.sendRequest("POST", param);
 
+        //  ------ Mandiamo la richiesta anche nella sezione relativa alle date disponibili
+        //  ------ Con i caratteri formattati in base ad essa
         Parametri dizDD = new Parametri("dateDisp");
         dizDD.value = new String[] {dataFrom, timeFrom, timeTo, datiUser.getNome(), datiUser.getCognome(), datiUser.getScore()};
         param = Parametri.generaParametri(TIPO_ELEMENTO_DD, ACCESSO, dizDD.toJsonObj().toString());
@@ -269,6 +313,9 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
 
 
+        //  ------ Salviamo la disponibilita' in un "database" locale per visionarle nelle "Mie Disponibilità"
+        //  ------ L'operazione d'inserimento sul database non è disponibile,
+        //  ------ Quindi abbiamo utilizzato una simulazione
         ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();
         HashMap<String, String> map = new HashMap<String, String>();
         for(int i = 0; i < diz.value.length; i++){

@@ -71,6 +71,26 @@ public class InserisciRichiesta extends AppCompatActivity {
 
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("mydata", data);
+        outState.putString("myfrom", from);
+        outState.putString("myto", to);
+
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        dateBTN.setText(savedInstanceState.getString("mydata"));
+        daBTN.setText(savedInstanceState.getString("myfrom"));
+        aBTN.setText(savedInstanceState.getString("myto"));
+
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_inserisci_richiesta, menu);
@@ -201,12 +221,12 @@ public class InserisciRichiesta extends AppCompatActivity {
         Parametri diz = new Parametri("mieRichiesteInserite");
         diz.value = new String[] { "", data, from, to, specSP.getSelectedItem().toString(), "", "", "", ""};
 
-        ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieRichieste();
+        ArrayList<HashMap<String, String>> leMieRic = SharedStorageApp.getInstance().getLeMieRichieste();
         HashMap<String, String> map = new HashMap<String, String>();
         for(int i = 0; i < diz.value.length; i++){
             map.put(diz.keyOfMap[i], diz.value[i]);
         }
-        leMieDisp.add(map);
+        leMieRic.add(map);
     }
 
 

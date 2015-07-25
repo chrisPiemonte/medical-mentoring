@@ -29,6 +29,7 @@ public class Appuntamenti extends ListFragment {
     private static final String ACCESSO = "read";
 
     // lista dei parametri da inviare al server
+
     private String param;
 
     ArrayList<HashMap<String,String>> listaApp = new ArrayList<HashMap<String,String>>();
@@ -51,12 +52,12 @@ public class Appuntamenti extends ListFragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        //Genero i paramentri da inviare al server, diversi per la chiave d'accesso
         param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, "");  Log.i("JSON IN RISP = ", "");
         String serverAnswer = ServerManager.sendRequest("POST", param);
 
         listaApp = JSONManager.toListOfMap(serverAnswer,"appuntamenti");
-
+        // Inserisco i dati nell adapter per visionarli sull activity
         adapter = new SimpleAdapter(getActivity(),
                 listaApp,
                 R.layout.item_appuntamento,

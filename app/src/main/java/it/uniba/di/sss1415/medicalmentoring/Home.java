@@ -45,7 +45,7 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Per il menu laterale
+        // ------ Per il menu attivabile dall' "Hamburger"
         menuItems = getResources().getStringArray(R.array.arrayDrawerMenu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -65,10 +65,11 @@ public class Home extends ActionBarActivity {
             }
         };
 
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
+        // ------ genero le azioni da far intraprendere ad i vari bottoni del menu laterale
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, menuItems));
         mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener(){
             @Override
@@ -83,6 +84,10 @@ public class Home extends ActionBarActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
 
@@ -104,6 +109,7 @@ public class Home extends ActionBarActivity {
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
 
+        // ------ Suddivido le azioni dei tre bottoni presenti nell'action bar
         switch (item.getItemId()) {
             case R.id.action_disponibilita:
                 nuovaDisp();
@@ -136,6 +142,8 @@ public class Home extends ActionBarActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //  ------ Metodi relativi ad i bottoni della action bar
+
 
     public  void mostraSearch(){
         Intent apri = new Intent(Home.this, InserisciRichiesta.class);
@@ -159,6 +167,7 @@ public class Home extends ActionBarActivity {
         }
 
         @Override
+        // ------ Imposto i fragment da aprire nell'activity
         public Fragment getItem(int pos) {
 
             if(pos == 0){

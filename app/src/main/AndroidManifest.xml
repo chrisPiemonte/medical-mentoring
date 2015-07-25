@@ -25,7 +25,8 @@
             android:name=".Registrati"
             android:label="@string/title_activity_registrati"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            >
         </activity>
         <activity
             android:name=".Home"
@@ -43,7 +44,8 @@
         <activity
             android:name=".InserisciRichiesta"
             android:label="@string/title_activity_inserisci_richiesta"
-            android:parentActivityName=".Home" >
+            android:parentActivityName=".Home"
+            android:configChanges="orientation|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="it.uniba.di.sss1415.medicalmentoring.Home" />
