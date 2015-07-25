@@ -248,6 +248,8 @@
     <string name="bisettimanale">Bisettimanale</string>
     <string name="fino_a_data">Fino a data</string>
     <string name="disponibilita_inserita">Disponibilita inserita</string>
+    <string name="inserisci">Inserisci</string>
+    <string name="invia_richiesta">Invia richiesta</string>
 
 
 </resources>

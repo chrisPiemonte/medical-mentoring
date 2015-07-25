@@ -10,11 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -215,9 +219,37 @@ public class InserisciDisponibilita extends ActionBarActivity {
         dialog.show();
 
     }
-    
 
-    public void disponibilitaInviata(View v){
+    public void inserisciClick(View v){
+
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_richiesta);
+        dialog.setTitle("Conferma");
+
+        TextView message = (TextView) dialog.findViewById(R.id.richiestaTV);
+        message.setText("Sei sicuro di voler inserire la disponibilità ?");
+        Button ok = (Button) dialog.findViewById(R.id.okBTN);
+        Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                disponibilitaInviata();
+                dialog.dismiss();
+                finish();
+            }
+        });
+        annulla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+
+            }
+        });
+        dialog.show();
+    }
+
+    public void disponibilitaInviata(){
 
         DatiUtente datiUser = SharedStorageApp.getInstance().getDatiUtente();
         Parametri diz = new Parametri("dispon");

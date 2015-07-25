@@ -191,14 +191,14 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cerca"
+                android:text="@string/inserisci"
                 android:id="@+id/cercaBTN"
                 android:layout_below="@+id/finoADataBTN"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:padding="20dp"
                 android:layout_marginTop="30dp"
-                android:onClick="richiestaInviata"
+                android:onClick="inserisciClick"
                 android:layout_alignWithParentIfMissing="false"
                 android:layout_alignParentTop="false"/>
 

@@ -14,6 +14,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -41,7 +42,7 @@ public class Richiesta extends AppCompatActivity {
 
     //variabili per l utilizzo del dialog
 
-    final String TEXT = "Nessun risultato trovato. Inviare la richiesta al server per la ricerca automatica ?";
+    final String TEXT = "Inviare la richiesta al server per la ricerca automatica ?";
 
 
 
@@ -56,6 +57,7 @@ public class Richiesta extends AppCompatActivity {
 
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_richiesta);
+        dialog.setTitle("Nessun risultato trovato");
         Button ok = (Button) dialog.findViewById(R.id.okBTN);
         Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
         TextView message = (TextView) dialog.findViewById(R.id.richiestaTV);
@@ -75,22 +77,22 @@ public class Richiesta extends AppCompatActivity {
         listaApp = JSONManager.toListOfMap(serverAnswer, diz.chiaveAccesso);
         listaApp = controllaJson(listaApp);
         //se non sono stati trovati interventi relativi alla ricerca, mandiamo un dialog
+
         if (listaApp.isEmpty()){
             message.setText(TEXT);
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tornaHome();
+                    Toast.makeText(getBaseContext(),"Richiesta inviata", Toast.LENGTH_LONG).show();
                     dialog.dismiss();
-
+                    finish();
                 }
             });
             annulla.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    tornaHome();
-                    dialog.dismiss();
-
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                            finish();
                 }
             });
             dialog.show();
@@ -156,17 +158,13 @@ public class Richiesta extends AppCompatActivity {
 
             return temp;
 
-
-
-
-
-
-
     }
 
-    public void tornaHome(){
-        Intent back = new Intent(Richiesta.this, Home.class);
-        startActivity(back);
+    public void inviaRichiesta(View v){
+
+        Toast.makeText(getBaseContext(), "Richiesta Inviata", Toast.LENGTH_LONG).show();
+        finish();
+
     }
 
 
