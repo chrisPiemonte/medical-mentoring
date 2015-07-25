@@ -4,9 +4,20 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -17,7 +28,11 @@ import android.view.ViewGroup;
  * Use the {@link Notifiche#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Notifiche extends Fragment {
+public class Notifiche extends ListFragment {
+
+    ArrayList<HashMap<String,String>> listaApp = new ArrayList<HashMap<String,String>>();
+    public ListAdapter adapter;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -50,6 +65,47 @@ public class Notifiche extends Fragment {
         // Required empty public constructor
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        String s = "{\"richieste\":[{\"data\":\"2015-02-28\",\"oraInizio\":\"15:00\",\"oraFine\":\"19:00\",\"intervento\":\"Colicisti\",\"dottore\":\"Pinco Panco\"},{\"data\":\"2015-09-10\",\"oraInizio\":\"09:00\",\"oraFine\":\"11:00\",\"intervento\":\"Cardiologia\",\"dottore\":\"Panco Pinco\"}]}";
+
+        Parametri dizUno = new Parametri("richiesteValutare");
+        dizUno.value = new String[]{"2015-02-28", "15:00", "19:00", "Colicisti", "Pinco Panco"};
+
+        Parametri dizDue = new Parametri("richiesteValutare");
+        dizDue.value = new String[]{"2015-09-10", "09:00", "11:00", "Cardiologia", "Panco Pinco"};
+        JSONArray jArray = new JSONArray();
+        jArray.put(dizUno.toJsonObj().toString());
+        jArray.put(dizDue.toJsonObj().toString());
+
+        JSONObject jObj = new JSONObject();
+        try{
+            jObj.put("richieste", jArray);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.i("PROVA", jObj.toString().replaceAll("\\\\", "") );
+        listaApp = JSONManager.toListOfMap( s, "richieste" );
+
+        adapter = new SimpleAdapter(getActivity(),
+                listaApp,
+                R.layout.item_notifica,
+                new String[] {"data","oraInizio","oraFine","intervento","dottore"},
+                new int[]{R.id.textViewData, R.id.textViewOraInizio, R.id.textViewOraFine,
+                          R.id.textViewIntervento, R.id.textViewDottore});
+        setListAdapter(adapter);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

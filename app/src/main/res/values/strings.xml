@@ -250,6 +250,8 @@
     <string name="disponibilita_inserita">Disponibilita inserita</string>
     <string name="inserisci">Inserisci</string>
     <string name="invia_richiesta">Invia richiesta</string>
+    <string name="Accetta">Accetta</string>
+    <string name="richiesta_in_sospeso">Richiesta in sospeso</string>
 
 
 </resources>

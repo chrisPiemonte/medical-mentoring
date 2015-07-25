@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textViewTipoAppuntamento"
             android:textSize="25sp"
-            android:text="Notifica"
+            android:text="@string/richiesta_in_sospeso"
             android:background="#455A64"
             android:textColor="#FFFFFF"
             android:padding="10dp"
@@ -79,15 +79,16 @@
             android:paddingTop="5dp"
             android:paddingRight="55dp"/>
 
-        <RatingBar
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ratingBar"
+            android:text="@string/Accetta"
+            android:id="@+id/button2"
             android:layout_gravity="right"
-            style="@android:style/Widget.DeviceDefault.RatingBar.Indicator"
-            android:clickable="true"
-            android:rating="3.5"
-            />
+            android:padding="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"/>
 
 
     </LinearLayout>

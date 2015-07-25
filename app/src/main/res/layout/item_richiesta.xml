@@ -11,7 +11,9 @@
               android:background="@drawable/material_card"
               android:layout_alignParentTop="true"
               android:layout_alignParentStart="true"
-              android:layout_alignParentLeft="true">
+              android:layout_alignParentLeft="true"
+              android:elevation="8dp"
+    >
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -84,7 +86,7 @@
         android:onClick="inviaRichiesta"
         android:layout_gravity="right"
         android:padding="10dp"
-        android:layout_margin="5dp"/>
+        android:layout_margin="10dp"/>
 
 
 </LinearLayout>
