@@ -30,7 +30,9 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
     String param ;
     final String TIPO_ELEMENTO = "dispon";
-    final String ACCESSO = "read";
+    final String TIPO_ELEMENTO_DD = "dateDisp";
+    final String ACCESSO = "write";
+
     ArrayList<HashMap<String,String>> listaApp = new ArrayList<HashMap<String,String>>();
     final String S1 = "Ogni due settimane (Il lunedi)";
     final String S2 = "Ogni due settimane";
@@ -252,12 +254,18 @@ public class InserisciDisponibilita extends ActionBarActivity {
     public void disponibilitaInviata(){
 
         DatiUtente datiUser = SharedStorageApp.getInstance().getDatiUtente();
-        Parametri diz = new Parametri("dispon");
 
+        Parametri diz = new Parametri("dispon");
         diz.value = new String[] {"", dataFrom, timeFrom, timeTo, datiUser.getPrimariaEx(), ripetizione, dataTo, datiUser.getEmail()};
+
         param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, diz.toJsonObj().toString());
 
         String serverAnswer = ServerManager.sendRequest("POST", param);
+
+        Parametri dizDD = new Parametri("dateDisp");
+        dizDD.value = new String[] {dataFrom, timeFrom, timeTo, datiUser.getNome(), datiUser.getCognome(), datiUser.getScore()};
+        param = Parametri.generaParametri(TIPO_ELEMENTO_DD, ACCESSO, dizDD.toJsonObj().toString());
+        ServerManager.sendRequest("POST", param);
 
         Toast toastMessage = Toast.makeText(getApplicationContext(), R.string.disponibilita_inserita, Toast.LENGTH_LONG);
         toastMessage.show();

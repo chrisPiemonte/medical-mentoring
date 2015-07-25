@@ -252,6 +252,10 @@
     <string name="invia_richiesta">Invia richiesta</string>
     <string name="Accetta">Accetta</string>
     <string name="richiesta_in_sospeso">Richiesta in sospeso</string>
+    <string name="title_activity_le_mie_richieste">LeMieRichieste</string>
+    <string name="title_activity_le_mie_disponibilita">LeMieDisponibilita</string>
+    <string name="rifiuta">Rifiuta</string>
+    <string name="logout">Logout</string>
 
 
 </resources>

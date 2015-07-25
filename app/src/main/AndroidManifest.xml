@@ -55,7 +55,24 @@
         </activity>
         <activity
             android:name=".InserisciDisponibilita"
-            android:label="@string/title_activity_inserisci_disponibilita" >
+            android:label="@string/title_activity_inserisci_disponibilita"
+            android:parentActivityName=".Home">
+        </activity>
+        <activity
+            android:name=".LeMieRichieste"
+            android:label="@string/title_activity_le_mie_richieste"
+            android:parentActivityName=".Home" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.uniba.di.sss1415.medicalmentoring.Home" />
+        </activity>
+        <activity
+            android:name=".LeMieDisponibilita"
+            android:label="@string/title_activity_le_mie_disponibilita"
+            android:parentActivityName=".Home" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.uniba.di.sss1415.medicalmentoring.Home" />
         </activity>
     </application>
 

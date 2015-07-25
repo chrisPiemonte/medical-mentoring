@@ -35,18 +35,14 @@ public class Richiesta extends AppCompatActivity {
     String param ;
     final String TIPO_ELEMENTO = "dateDisp";
     final String ACCESSO = "read";
+    final String ACCESSO_WRITE = "write";
+    final String TIPO_ELEMENTO_MRI = "mieRichiesteInserite";
     ArrayList<HashMap<String,String>> listaApp = new ArrayList<HashMap<String,String>>();
 
     public ListAdapter adapter;
 
-
     //variabili per l utilizzo del dialog
-
     final String TEXT = "Inviare la richiesta al server per la ricerca automatica ?";
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +58,29 @@ public class Richiesta extends AppCompatActivity {
         Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
         TextView message = (TextView) dialog.findViewById(R.id.richiestaTV);
 
-
         Intent ricevuto = getIntent();
         from = ricevuto.getStringExtra("oraInizio");
         to = ricevuto.getStringExtra("oraFine");
         data = ricevuto.getStringExtra("data");
+
         list = (ListView) findViewById(R.id.list);
 
         Parametri diz = new Parametri("dateDisp");
-        diz.value = new String[]{data,from,to,"","",""};
+        diz.value = new String[]{data, from, to, "", "", ""};
+
         //diz.toJsonObj().toString()
         param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, "");
         String serverAnswer = ServerManager.sendRequest("POST",param);
+
+        DatiUtente datiUser = SharedStorageApp.getInstance().getDatiUtente();
+
+
+        Parametri dizMRI = new Parametri("mieRichiesteInserite");
+        dizMRI.value = new String[] {"", data, from, to, datiUser.getPrimariaEx(), datiUser.getNome(), datiUser.getCognome(), "", datiUser.getEmail()};
+        param = Parametri.generaParametri(TIPO_ELEMENTO_MRI, ACCESSO_WRITE, dizMRI.toJsonObj().toString());
+        ServerManager.sendRequest("POST",param);
+
+
         listaApp = JSONManager.toListOfMap(serverAnswer, diz.chiaveAccesso);
         listaApp = controllaJson(listaApp);
         //se non sono stati trovati interventi relativi alla ricerca, mandiamo un dialog
@@ -97,7 +104,6 @@ public class Richiesta extends AppCompatActivity {
             });
             dialog.show();
 
-
         }
         else {
             adapter = new SimpleAdapter(Richiesta.this,
@@ -105,7 +111,7 @@ public class Richiesta extends AppCompatActivity {
                     R.layout.item_richiesta,
                     new String[]{"data", "oraInizio", "oraFine", "nomeT", "cognomeT", "scoreT"},
                     new int[]{R.id.dataTV, R.id.oraInizioTV, R.id.oraFineTV,
-                            R.id.nomeTTV, R.id.cognomeTTV, R.id.scoreTTV});
+                              R.id.nomeTTV, R.id.cognomeTTV, R.id.scoreTTV});
             list.setAdapter(adapter);
 
         }

@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_margin="10dp"
         android:background="@drawable/material_card"
-        android:paddingBottom="10dp"
+        android:paddingBottom="5dp"
         android:elevation="8dp">
 
         <TextView
@@ -79,16 +79,36 @@
             android:paddingTop="5dp"
             android:paddingRight="55dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Accetta"
-            android:id="@+id/button2"
-            android:layout_gravity="right"
-            android:padding="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rifiuta"
+                android:id="@+id/rifiutaBTN"
+                android:layout_gravity="right"
+                android:padding="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Accetta"
+                android:id="@+id/accettaBTN"
+                android:layout_gravity="right"
+                android:padding="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
 
 
     </LinearLayout>

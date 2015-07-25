@@ -108,7 +108,8 @@ public class Home extends ActionBarActivity {
             case R.id.action_search:
                 mostraSearch();
                 return true;
-            case R.id.action_settings:
+            case R.id.logout:
+                finish();
                 return true;
         }
 
@@ -187,11 +188,11 @@ public class Home extends ActionBarActivity {
                 startActivity(i);
                 break;
             case 1:
-                Intent in = new Intent(Home.this, Profilo.class);
+                Intent in = new Intent(Home.this, LeMieRichieste.class);
                 startActivity(in);
                 break;
             case 2:
-                Intent intent = new Intent(Home.this, Profilo.class);
+                Intent intent = new Intent(Home.this, LeMieDisponibilita.class);
                 startActivity(intent);
                 break;
 

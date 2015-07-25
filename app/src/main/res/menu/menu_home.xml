@@ -4,8 +4,8 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="it.uniba.di.sss1415.medicalmentoring.Home">
 
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
+    <item android:id="@+id/logout"
+          android:title="@string/logout"
           android:orderInCategory="100"
           app:showAsAction="never"/>
 
