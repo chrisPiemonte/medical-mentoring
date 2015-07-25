@@ -60,7 +60,21 @@
                 android:layout_alignEnd="@+id/passwordET"
                 android:onClick="accessoSistema"
                 android:padding="20dp"/>
+            <RelativeLayout
+                android:id="@+id/loadingPanel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_below="@+id/loginBTN"
+                >
 
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    android:id="@+id/loading"/>
+            </RelativeLayout>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

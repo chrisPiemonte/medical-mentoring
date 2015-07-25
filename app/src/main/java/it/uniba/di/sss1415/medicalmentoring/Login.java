@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -23,6 +25,8 @@ public class Login extends ActionBarActivity {
 
     // per il login
     private EditText editUsername;        private EditText editPassword;
+    private Button accediBTN;                private Button registratiBTN;
+    ProgressBar loadingPB;
 
     //per la gestione della connessione per il login
     private static final String TIPO_ELEMENTO_LOGIN = "accediSistema";
@@ -54,9 +58,19 @@ public class Login extends ActionBarActivity {
         //per il login
         editUsername = (EditText) findViewById(R.id.emailET);
         editPassword = (EditText) findViewById(R.id.passwordET);
+        accediBTN = (Button) findViewById(R.id.loginBTN);
+        registratiBTN = (Button) findViewById(R.id.signinBTN);
+        loadingPB = (ProgressBar) findViewById(R.id.loading);
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        accediBTN.setVisibility(View.VISIBLE);
+        registratiBTN.setVisibility(View.VISIBLE);
+        loadingPB.setVisibility(View.GONE);
+    }
 
     // genera il Json e i parametri per il LOGIN
     private void prendiDatiLogin(){
@@ -80,6 +94,10 @@ public class Login extends ActionBarActivity {
     // accesso al sistema in seguito al LOGIN
     public void accessoSistema(View v){
 
+        accediBTN.setVisibility(View.GONE);
+        registratiBTN.setVisibility(View.GONE);
+        loadingPB.setVisibility(View.VISIBLE);
+
         prendiDatiLogin();
         String serverAnswer = ServerManager.sendRequest(GET, parametriServer);
 
@@ -94,6 +112,7 @@ public class Login extends ActionBarActivity {
             }catch(Exception e){
                 e.printStackTrace();
             }
+
             mostraHome();
         }
         else creaMessaggio(textErrorLogin);
