@@ -88,6 +88,10 @@ public class Home extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
     }
 
 
@@ -144,7 +148,7 @@ public class Home extends ActionBarActivity {
 
     //  ------ Metodi relativi ad i bottoni della action bar
 
-
+    // porta a Inserisci richiesta
     public  void mostraSearch(){
         Intent apri = new Intent(Home.this, InserisciRichiesta.class);
         startActivity(apri);

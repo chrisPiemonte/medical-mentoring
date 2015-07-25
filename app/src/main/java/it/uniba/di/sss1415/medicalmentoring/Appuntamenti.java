@@ -52,6 +52,7 @@ public class Appuntamenti extends ListFragment {
     @Override
     public void onResume() {
         super.onResume();
+
         //Genero i paramentri da inviare al server, diversi per la chiave d'accesso
         param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, "");  Log.i("JSON IN RISP = ", "");
         String serverAnswer = ServerManager.sendRequest("POST", param);

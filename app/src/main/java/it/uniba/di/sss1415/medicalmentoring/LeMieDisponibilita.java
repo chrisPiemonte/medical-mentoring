@@ -21,6 +21,7 @@ public class LeMieDisponibilita extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_le_mie_disponibilita);
 
+        //  ------  mostra le dixponibilità inserite e salvate in locale
         list = (ListView) findViewById(R.id.mieDispLV);
         ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();
 
@@ -33,10 +34,6 @@ public class LeMieDisponibilita extends AppCompatActivity {
         list.setAdapter(adapter);
 
     }
-
-
-
-
 
 
     @Override

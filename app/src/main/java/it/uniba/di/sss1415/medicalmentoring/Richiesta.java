@@ -68,13 +68,12 @@ public class Richiesta extends AppCompatActivity {
         Parametri diz = new Parametri("dateDisp");
         diz.value = new String[]{data, from, to, "", "", ""};
 
-        //diz.toJsonObj().toString()
         param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, "");
         String serverAnswer = ServerManager.sendRequest("POST",param);
 
         DatiUtente datiUser = SharedStorageApp.getInstance().getDatiUtente();
 
-
+        //  ------  salva in locale la richiesta inserita
         Parametri dizMRI = new Parametri("mieRichiesteInserite");
         dizMRI.value = new String[] {"", data, from, to, datiUser.getPrimariaEx(), datiUser.getNome(), datiUser.getCognome(), "", datiUser.getEmail()};
         param = Parametri.generaParametri(TIPO_ELEMENTO_MRI, ACCESSO_WRITE, dizMRI.toJsonObj().toString());
@@ -83,8 +82,8 @@ public class Richiesta extends AppCompatActivity {
 
         listaApp = JSONManager.toListOfMap(serverAnswer, diz.chiaveAccesso);
         listaApp = controllaJson(listaApp);
-        //se non sono stati trovati interventi relativi alla ricerca, mandiamo un dialog
 
+        //  ------  se non sono stati trovati interventi relativi alla ricerca, mandiamo un dialog
         if (listaApp.isEmpty()){
             message.setText(TEXT);
             ok.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +140,7 @@ public class Richiesta extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //  ------  filtra il json in base alla data inserita nella ricerca
     public  ArrayList<HashMap<String,String>> controllaJson(ArrayList<HashMap<String,String>> s){
         SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date checkData ;

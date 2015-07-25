@@ -17,6 +17,7 @@ import java.util.List;
 public class JSONManager {
 
 
+    //  ------  converto i risultati ottenuti dal server in modo da poterli visualizzare con un adapter
     public static ArrayList<HashMap<String,String>> toListOfMap(String result, String nameArray){
 
         JSONArray jArray = null;

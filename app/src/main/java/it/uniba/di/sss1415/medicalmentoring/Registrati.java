@@ -75,7 +75,7 @@ public class Registrati extends ActionBarActivity {
     
     public void prendiDatiSignIn(){
 
-        //recuperiamo i dati inseriti dall'utente
+        //  ------  recuperiamo i dati inseriti dall'utente
         email = editEmail.getText().toString();
         anno = editAnnoIscrizione.getText().toString();
         numero = editNumero.getText().toString();
@@ -101,7 +101,7 @@ public class Registrati extends ActionBarActivity {
     }
 
 
-    // evento per registrare l'utente
+    //  ------  evento per registrare l'utente
     public void registrazioneUtente(View v){
 
         // genera il json e i parametri
@@ -121,14 +121,14 @@ public class Registrati extends ActionBarActivity {
 
     }
 
-    //metodo che apre l'activity della home dopo la registrazione o l'accesso
+    //  ------  metodo che apre l'activity della home dopo la registrazione o l'accesso
     public  void mostraHome(){
         Intent apriProfilo = new Intent(Registrati.this, Home.class);
         startActivity(apriProfilo);
     }
 
 
-    //metodo che mostra la pop up all'utente dicendogli di aver sbagliato ad inserire username e password
+    //  ------  metodo che mostra la pop up all'utente dicendogli di aver sbagliato ad inserire username e password
     public void creaMessaggio(CharSequence message){
         Context context = getApplicationContext();
         toastMessage = Toast.makeText(context, message, duration);

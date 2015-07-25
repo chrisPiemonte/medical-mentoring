@@ -30,6 +30,7 @@ public class ServerManager {
                 String parametri = params[0];  Log.i("PARAMETRI INVIATI = ", parametri);
                 HttpURLConnection conn = null;
 
+                //  ------  stabilisce la connessione, manda e riceve i dati
                 try {
                     URL url = new URL("http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php");
                     System.out.println(url.toString());
@@ -70,7 +71,7 @@ public class ServerManager {
                     Log.i("SERVER_ERRORACCIO2 = ", e.toString());
                 }
 
-                return null;
+                return "failed";
             }
 
             @Override
@@ -80,12 +81,13 @@ public class ServerManager {
                 response = result;
             }
         }
-
-        AppuntamentiAsyncTask inviaRichiestaAppuntamenti = new AppuntamentiAsyncTask();
         try {
+
+            AppuntamentiAsyncTask inviaRichiestaAppuntamenti = new AppuntamentiAsyncTask();
             response = inviaRichiestaAppuntamenti.execute(parametriServer).get();
         }catch(Exception e){
             e.printStackTrace();
+            response = "failed";
         }
         return response;
     }

@@ -313,7 +313,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
 
 
 
-        //  ------ Salviamo la disponibilita' in un "database" locale per visionarle nelle "Mie Disponibilità"
+        //  ------ Salviamo la disponibilita' in locale per visionarle nelle "Mie Disponibilità"
         //  ------ L'operazione d'inserimento sul database non è disponibile,
         //  ------ Quindi abbiamo utilizzato una simulazione
         ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();

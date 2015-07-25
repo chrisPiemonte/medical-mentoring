@@ -45,7 +45,7 @@ public class Login extends ActionBarActivity {
     public DatiUtente datiUser;
 
     //pop up
-    private CharSequence textErrorLogin = "Username o password errati!";
+    private CharSequence textErrorLogin;
     int duration = Toast.LENGTH_LONG;
     private Toast toastMessage;
 
@@ -64,9 +64,10 @@ public class Login extends ActionBarActivity {
 
     }
 
+    //  ------  imposto come non visibile l'animazione del caricamento e rendo visibili i bottoni
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
         accediBTN.setVisibility(View.VISIBLE);
         registratiBTN.setVisibility(View.VISIBLE);
         loadingPB.setVisibility(View.GONE);
@@ -101,7 +102,7 @@ public class Login extends ActionBarActivity {
         prendiDatiLogin();
         String serverAnswer = ServerManager.sendRequest(GET, parametriServer);
 
-        if ( !(serverAnswer.equals("Utente non presente")) ){
+        if ( !(serverAnswer.equals("Utente non presente")) && !(serverAnswer.equals("failed"))){
 
             SharedStorageApp app = SharedStorageApp.getInstance();
             app.setDatiUtente(serverAnswer);
@@ -115,7 +116,16 @@ public class Login extends ActionBarActivity {
 
             mostraHome();
         }
-        else creaMessaggio(textErrorLogin);
+        else {
+            if (serverAnswer.equals("failed")) textErrorLogin = "Connessione fallita";
+            else textErrorLogin = "Username o password errati!";
+
+            //  ------  rendo visibile l'animazione di caricamento
+            creaMessaggio(textErrorLogin);
+            accediBTN.setVisibility(View.VISIBLE);
+            registratiBTN.setVisibility(View.VISIBLE);
+            loadingPB.setVisibility(View.GONE);
+        }
 
     }
 

@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".Home"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppThemeNoShadow">
         </activity>
         <activity
             android:name=".Profilo"

@@ -70,6 +70,7 @@ public class Notifiche extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         String s = "{\"richieste\":[{\"data\":\"2015-02-28\",\"oraInizio\":\"15:00\",\"oraFine\":\"19:00\",\"intervento\":\"Colicisti\",\"dottore\":\"Pinco Panco\"},{\"data\":\"2015-09-10\",\"oraInizio\":\"09:00\",\"oraFine\":\"11:00\",\"intervento\":\"Cardiologia\",\"dottore\":\"Panco Pinco\"}]}";
 
         Parametri dizUno = new Parametri("richiesteValutare");
@@ -81,6 +82,7 @@ public class Notifiche extends ListFragment {
         jArray.put(dizUno.toJsonObj().toString());
         jArray.put(dizDue.toJsonObj().toString());
 
+
         JSONObject jObj = new JSONObject();
         try{
             jObj.put("richieste", jArray);
@@ -91,6 +93,8 @@ public class Notifiche extends ListFragment {
         Log.i("PROVA", jObj.toString().replaceAll("\\\\", "") );
         listaApp = JSONManager.toListOfMap( s, "richieste" );
 
+
+        //  ------  mostro delle notifiche pervenute simulate
         adapter = new SimpleAdapter(getActivity(),
                 listaApp,
                 R.layout.item_notifica,

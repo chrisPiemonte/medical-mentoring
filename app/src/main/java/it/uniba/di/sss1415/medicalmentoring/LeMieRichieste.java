@@ -21,7 +21,7 @@ public class LeMieRichieste extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_le_mie_richieste);
 
-
+        //  ------  mostra le richieste inserite e salvate in locale
         list = (ListView) findViewById(R.id.leMieRicLV);
         ArrayList<HashMap<String, String>> leMieRic = SharedStorageApp.getInstance().getLeMieRichieste();
 

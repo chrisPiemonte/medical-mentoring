@@ -14,7 +14,7 @@ public class Parametri {
     String chiaveAccesso;
 
 
-
+    //  ------  genera la stringa da mandare al server
     public static String generaParametri(String tipoElemento, String accesso, String jsonDaInviare){
 
         // parametri = 'accesso:' + accesso + ', elemento:' + this.tipoElemento + ', jsonDaScrivere:' + jsonDaInviare;
@@ -27,7 +27,7 @@ public class Parametri {
     }
 
 
-
+    //  ------  creo dei "dizionari" in modo da facilitare la comunicazione con il server
     public Parametri(String tipo){
 
         switch (tipo){
@@ -101,7 +101,7 @@ public class Parametri {
     }
 
 
-
+    //  ------  converte a json i dizionari
     public JSONObject toJsonObj(){
 
         JSONObject j = new JSONObject();

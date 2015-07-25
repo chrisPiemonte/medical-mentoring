@@ -25,7 +25,8 @@ public class DatiUtente {
     private String primariaEx; //prima expertise
     private List<String> expertiseRicevute;
 
-
+    // classe per salvare in locale i dati del profilo
+    // Divide la string ricevuti dal server al momento del login e del modifica profilo
     DatiUtente(String dati) {
 
 

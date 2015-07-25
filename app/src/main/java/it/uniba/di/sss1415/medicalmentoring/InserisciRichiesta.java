@@ -53,12 +53,15 @@ public class InserisciRichiesta extends AppCompatActivity {
         aBTN = (Button) findViewById(R.id.fineBTN);
         specSP = (Spinner) findViewById(R.id.specSP);
 
+        //  ------ Imposto gli array per gli spinner
         specSP = (Spinner) findViewById(R.id.specSP);
         ArrayAdapter<CharSequence> adapterSpec = ArrayAdapter.createFromResource(this, R.array.specializzazioni,
                 android.R.layout.simple_spinner_item);
         adapterSpec.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         specSP.setAdapter(adapterSpec);
 
+        //  ------  Formatto la data, divisa da trattini ed aggiungendo gli zero per numeri
+        //  ------  minori di dieci
         data = String.format("%02d", year) + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
         dateBTN.setText(data);
 
@@ -69,7 +72,7 @@ public class InserisciRichiesta extends AppCompatActivity {
         aBTN.setText(to);
     }
 
-
+    //  ------  Salvo i dati inseriti quando il telefono cambia orientazione
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -112,7 +115,7 @@ public class InserisciRichiesta extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //  ------  mostro il dialog con il dataPicker per selezionare una data e salvarla
     public void showDatePicker(View v){
 
         final Dialog dialog = new Dialog(this);
@@ -147,6 +150,7 @@ public class InserisciRichiesta extends AppCompatActivity {
 
     }
 
+    //  ------  mostro il dialog con il dataPicker per selezionare una data e salvarla
     public void showDaTimePicker(View v){
 
         final Dialog dialog = new Dialog(this);
@@ -178,7 +182,7 @@ public class InserisciRichiesta extends AppCompatActivity {
         dialog.show();
 
     }
-
+    //  ------  mostro il dialog con il timePicker per selezionare un orario e salvarlo
     public void showATimePicker(View v){
 
         final Dialog dialog = new Dialog(this);
@@ -210,6 +214,7 @@ public class InserisciRichiesta extends AppCompatActivity {
         dialog.show();
 
     }
+
 
     public  void mostraCerca(View v){
         Intent apriRic = new Intent(InserisciRichiesta.this, Richiesta.class);

@@ -42,13 +42,13 @@ public class Profilo extends AppCompatActivity {
         setContentView(R.layout.activity_profilo);
 
 
-        //prendo i dati da modificare
+        //  ------  prendo i dati da modificare
         nome = (EditText) findViewById(R.id.nomeET);
         cognome = (EditText) findViewById(R.id.cognomeET);
         anno = (EditText) findViewById(R.id.annoET);
         numero = (EditText) findViewById(R.id.numeroET);
 
-        //per gli spinner
+        //  ------  per gli spinner
 
         dropdownProvince = (Spinner) findViewById(R.id.provSP);
         ArrayAdapter<CharSequence> adapterProv = ArrayAdapter.createFromResource(this, R.array.arrayProvince,
@@ -62,11 +62,9 @@ public class Profilo extends AppCompatActivity {
         adapterSpec.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdownSpec.setAdapter(adapterSpec);
 
-
-
     }
 
-
+    //  ------  modifico i campi eventualmente modificati
     @Override
     protected void onResume() {
         super.onResume();
@@ -109,7 +107,7 @@ public class Profilo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //  ------  trovo l' index dello spinner data una determinata stringa
     private int getIndex(Spinner spinner, String myString){
         int index = 0;
 
@@ -122,7 +120,7 @@ public class Profilo extends AppCompatActivity {
         return index;
     }
 
-    // aggiungere pop-up di conferma e aggiornare i dati condivisi
+    //  ------  mostra un dialog di cnferma e manda al server i dati modificati
     public void modificaAccount(View v){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -172,7 +170,7 @@ public class Profilo extends AppCompatActivity {
         alert.show();
     }
 
-
+    //  ------  mostra un dialog di conferma e cambia la password
     public void cambiaPassword(View v){
 
         final Dialog dialog = new Dialog(this);

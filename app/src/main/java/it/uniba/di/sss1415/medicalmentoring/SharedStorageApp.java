@@ -8,6 +8,8 @@ import java.util.HashMap;
 /**
  * Created by Chris on 20/07/2015.
  */
+
+//  ------  classe per salvare alcuni dati in locale e raggiungibile da tutte le activity
 public class SharedStorageApp extends Application {
 
     private DatiUtente userData;
