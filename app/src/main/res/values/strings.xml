@@ -282,5 +282,6 @@
     <string name="inv_ric_server">Send the request to the server for automatic search?</string>
     <string name="ric_inviata">Request sent</string>
     <string name="nessun_risultato_trovato">No request found</string>
+    <string name="remove">Remove</string>
 
 </resources>

@@ -40,14 +40,10 @@ public class SharedStorageApp extends Application {
     }
 
 
-    public ArrayList<HashMap<String, String>> getLeMieDisponibilita(){
-        return LeMieDisponibilita;
-    }
 
 
-    public ArrayList<HashMap<String, String>> getLeMieRichieste(){
-        return LeMieRichieste;
-    }
+
+
 
 
 
@@ -71,16 +67,77 @@ public class SharedStorageApp extends Application {
 
 
 
-    public void cleanLeMieDisponibilita(){
-        LeMieDisponibilita = new ArrayList<HashMap<String, String>>();
+
+
+
+    // RICHIESTE
+
+    public ArrayList<HashMap<String, String>> getLeMieRichieste(){
+        return LeMieRichieste;
     }
-
-
-
-
 
     public void cleanLeMieRichieste() {
         LeMieRichieste = new ArrayList<HashMap<String, String>>();
     }
+
+    public void removeRichiesta(HashMap<String,String> map) {
+        HashMap<String, String> check = new HashMap<String, String>();
+        for (int i = 0; i < LeMieRichieste.size(); i++) {
+
+            check = LeMieRichieste.get(i);
+            if (map.get("intervento").equals(check.get("intervento"))) {
+                if (map.get("oraInizio").equals(check.get("oraInizio"))) {
+                    if (map.get("oraFine").equals(check.get("oraFine"))) {
+                        if (map.get("data").equals(check.get("data"))) {
+                            LeMieRichieste.remove(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    // DISPONIBILITà
+    public ArrayList<HashMap<String, String>> getLeMieDisponibilita(){
+        return LeMieDisponibilita;
+    }
+
+    public void cleanLeMieDisponibilita(){
+        LeMieDisponibilita = new ArrayList<HashMap<String, String>>();
+    }
+
+    public void removeDisponibilita(HashMap<String,String> map){
+        HashMap<String,String> check = new HashMap<String,String>();
+        for( int i = 0; i < LeMieDisponibilita.size(); i++){
+
+            check = LeMieDisponibilita.get(i);
+            if(map.get("data").equals(check.get("data"))){
+                if(map.get("oraInizio").equals(check.get("oraInizio"))){
+                    if(map.get("oraFine").equals(check.get("oraFine"))) {
+                        if (map.get("ripetizione").equals(check.get("ripetizione"))) {
+                            if (map.get("fineRipetizione").equals(check.get("fineRipetizione"))) {
+                                LeMieDisponibilita.remove(i);
+                                break;
+                            }
+
+
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+
+
+
+
+    }
+
+
 
 }

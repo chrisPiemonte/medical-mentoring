@@ -16,8 +16,14 @@
         android:background="@drawable/material_card"
         android:paddingBottom="15dp"
         android:elevation="8dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
 
+    >
         <TextView
+            android:layout_weight="8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textViewdataFrom"
@@ -27,6 +33,16 @@
             android:textColor="#FFFFFF"
             android:padding="10dp"
             />
+
+    <ImageView
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/editIB"
+        android:src="@drawable/edit"
+        android:background="#455A64"
+        android:onClick="rimuovi"/>
+</LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -69,6 +85,16 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             />
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remove"
+        android:id="@+id/inviaRichiestaBTN"
+        android:onClick="rimuovi"
+        android:layout_gravity="right"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+
 
 
     </LinearLayout>

@@ -1,12 +1,16 @@
 package it.uniba.di.sss1415.medicalmentoring;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,5 +60,33 @@ public class LeMieRichieste extends AppCompatActivity {
         }
         
         return super.onOptionsItemSelected(item);
+    }
+
+    public void rimuovi(View v) {
+
+        ViewGroup item = (ViewGroup) v.getParent().getParent();
+        if (v.getId() == R.id.inviaRichiestaBTN) {
+            HashMap<String, String> newAppu = new HashMap<String, String>();
+            newAppu.put("intervento", ((TextView) item.findViewById(R.id.textViewdataFrom)).getText().toString());
+            newAppu.put("oraInizio", ((TextView) item.findViewById(R.id.textViewOraInizio)).getText().toString());
+            newAppu.put("oraFine", ((TextView) item.findViewById(R.id.textViewOraFine)).getText().toString());
+            newAppu.put("data", ((TextView) item.findViewById(R.id.textViewRipetizione)).getText().toString());
+
+
+            SharedStorageApp.getInstance().removeRichiesta(newAppu);
+        } else {
+            HashMap<String, String> newAppu = new HashMap<String, String>();
+            newAppu.put("intervento", ((TextView) item.findViewById(R.id.textViewdataFrom)).getText().toString());
+            newAppu.put("oraInizio", ((TextView) item.findViewById(R.id.textViewOraInizio)).getText().toString());
+            newAppu.put("oraFine", ((TextView) item.findViewById(R.id.textViewOraFine)).getText().toString());
+            newAppu.put("data", ((TextView) item.findViewById(R.id.textViewRipetizione)).getText().toString());
+
+
+            SharedStorageApp.getInstance().removeRichiesta(newAppu);
+            Intent i = new Intent(LeMieRichieste.this, InserisciRichiesta.class);
+            startActivity(i);
+            finish();
+        }
+        item.setVisibility(View.GONE);
     }
 }
