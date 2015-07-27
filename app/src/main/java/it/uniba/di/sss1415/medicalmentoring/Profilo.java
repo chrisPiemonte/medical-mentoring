@@ -31,8 +31,9 @@ public class Profilo extends AppCompatActivity {
 
     DatiUtente datiUser;
 
-    private CharSequence textErrorOldP = "Attenzione, vecchia password sbagliata";
-    private CharSequence textErrorNuovaP = "O nuova password vuota";
+    private CharSequence textErrorOldP;
+    private CharSequence textErrorNuovaP;
+
     int duration = Toast.LENGTH_LONG;
     private Toast toastMessage;
 
@@ -40,7 +41,8 @@ public class Profilo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilo);
-
+        textErrorOldP = getBaseContext().getString(R.string.oldp);
+        textErrorNuovaP = getBaseContext().getString(R.string.newp);
 
         //  ------  prendo i dati da modificare
         nome = (EditText) findViewById(R.id.nomeET);
@@ -175,7 +177,7 @@ public class Profilo extends AppCompatActivity {
 
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_password);
-        dialog.setTitle("Cambia Password");
+        dialog.setTitle(getBaseContext().getString(R.string.cambiap));
 
         final EditText oldPass = (EditText) dialog.findViewById(R.id.oldPassET);
         final EditText newPass = (EditText) dialog.findViewById(R.id.newPassET);
@@ -200,7 +202,7 @@ public class Profilo extends AppCompatActivity {
                     }
                     String param = Parametri.generaParametri("cambioPsw", "change", jsonObject.toString());
                     String serverAnswer = ServerManager.sendRequest("POST", param);
-                    creaMessaggio("Inserimento avvenuto con successo!");
+                    creaMessaggio(getBaseContext().getString(R.string.ins_successo));
                     datiUser.setPass(newP);
                     dialog.dismiss();
                 } else {

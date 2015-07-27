@@ -13,13 +13,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.ActionBar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +77,7 @@ public class Home extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         // ------ genero le azioni da far intraprendere ad i vari bottoni del menu laterale
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, menuItems));
-        mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener(){
+        mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 selectItem(position);
@@ -89,9 +95,18 @@ public class Home extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        startActivity(intent);
+
+            moveTaskToBack(true);
+
+    }
+    // Before 2.0
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 
@@ -124,7 +139,13 @@ public class Home extends ActionBarActivity {
             case R.id.logout:
                 SharedStorageApp.getInstance().cleanLeMieDisponibilita();
                 SharedStorageApp.getInstance().cleanLeMieRichieste();
-                finish();
+                SharedStorageApp.getInstance().cleanMieiAppuntamenti();
+
+                Intent loginscreen = new Intent(this, Login.class);
+                loginscreen.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(loginscreen);
+                this.finish();
+
                 return true;
         }
 
@@ -149,7 +170,7 @@ public class Home extends ActionBarActivity {
     //  ------ Metodi relativi ad i bottoni della action bar
 
     // porta a Inserisci richiesta
-    public  void mostraSearch(){
+    public void mostraSearch() {
         Intent apri = new Intent(Home.this, InserisciRichiesta.class);
         startActivity(apri);
     }
@@ -174,9 +195,9 @@ public class Home extends ActionBarActivity {
         // ------ Imposto i fragment da aprire nell'activity
         public Fragment getItem(int pos) {
 
-            if(pos == 0){
+            if (pos == 0) {
                 return new Appuntamenti();
-            }else{
+            } else {
                 return new Notifiche();
             }
         }
@@ -188,19 +209,19 @@ public class Home extends ActionBarActivity {
 
         @Override
         public CharSequence getPageTitle(int pos) {
-            if(pos == 0){
-                return "APPUNTAMENTI";
-            }else{
-                return "NOTIFICHE";
+            if (pos == 0) {
+                return getBaseContext().getString(R.string.appuntamenti);
+            } else {
+                return getBaseContext().getString(R.string.notifiche);
             }
         }
 
     }
 
     // Metodo che apre una Activity dopo il click nel Drawer
-    private void selectItem(int pos){
+    private void selectItem(int pos) {
 
-        switch(pos){
+        switch (pos) {
             case 0:
                 Intent i = new Intent(Home.this, Profilo.class);
                 startActivity(i);
@@ -215,14 +236,31 @@ public class Home extends ActionBarActivity {
                 break;
 
         }
-        if(pos == 0){
+        if (pos == 0) {
             Intent i = new Intent(Home.this, Login.class);
         }
         mDrawerList.setItemChecked(pos, true);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
+    public void accetta(View v) {
+        ViewGroup item = (ViewGroup) v.getParent().getParent();
 
+        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.fade));
+        if(v.getId() == R.id.accettaBTN) {
+            HashMap<String, String> newAppu = new HashMap<String, String>();
+            newAppu.put("data", ((TextView) item.findViewById(R.id.textViewData)).getText().toString());
+            newAppu.put("oraInizio", ((TextView) item.findViewById(R.id.textViewOraInizio)).getText().toString());
+            newAppu.put("oraFine", ((TextView) item.findViewById(R.id.textViewOraFine)).getText().toString());
+            newAppu.put("tipoAppuntamento", getBaseContext().getString(R.string.ricevimento_tutoraggio));
+            newAppu.put("intervento", ((TextView) item.findViewById(R.id.textViewIntervento)).getText().toString());
+            newAppu.put("dottore", ((TextView) item.findViewById(R.id.textViewDottore)).getText().toString());
 
+            SharedStorageApp.getInstance().addMieiAppuntamenti(newAppu);
+        }
+
+        item.setVisibility(View.GONE);
+
+    }
 }
-

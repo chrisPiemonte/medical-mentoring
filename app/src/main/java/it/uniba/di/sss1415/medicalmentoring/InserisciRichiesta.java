@@ -15,12 +15,17 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class InserisciRichiesta extends AppCompatActivity {
@@ -76,9 +81,9 @@ public class InserisciRichiesta extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("mydata", data);
-        outState.putString("myfrom", from);
-        outState.putString("myto", to);
+        outState.putString("mydata", dateBTN.getText().toString());
+        outState.putString("myfrom", daBTN.getText().toString());
+        outState.putString("myto", aBTN.getText().toString());
 
 
     }
@@ -118,120 +123,55 @@ public class InserisciRichiesta extends AppCompatActivity {
     //  ------  mostro il dialog con il dataPicker per selezionare una data e salvarla
     public void showDatePicker(View v){
 
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_date_picker);
-
-        final DatePicker datePick = (DatePicker) dialog.findViewById(R.id.datePicker);
-
-        Button ok = (Button) dialog.findViewById(R.id.okBTN);
-        Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                day = datePick.getDayOfMonth();
-                month = datePick.getMonth()+1;
-                year = datePick.getYear();
-                data = String.format("%02d", year) + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
-
-                dateBTN.setText(data);
-
-                dialog.dismiss();
-            }
-        });
-        annulla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-
-            }
-        });
-        dialog.show();
+        android.app.DialogFragment picker = new DatePickerFragment((Button) v);
+        picker.show(getFragmentManager(), "datePicker");
 
     }
 
     //  ------  mostro il dialog con il dataPicker per selezionare una data e salvarla
-    public void showDaTimePicker(View v){
+    public void showTimePicker(View v){
 
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_time_picker);
-
-        final TimePicker timePick = (TimePicker) dialog.findViewById(R.id.timePicker);
-        timePick.setIs24HourView(true);
-
-        Button ok = (Button) dialog.findViewById(R.id.okBTN);
-        Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fromHour = timePick.getCurrentHour();
-                fromMinute = timePick.getCurrentMinute();
-                from = String.format("%02d", fromHour) + ":" + String.format("%02d", fromMinute);
-                daBTN.setText(from);
-                dialog.dismiss();
-            }
-        });
-        annulla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-
-            }
-        });
-        dialog.show();
-
+        android.app.DialogFragment newFragment = new TimePickerFragment((Button)v);
+        newFragment.show(getFragmentManager(), "TimePicker");
     }
-    //  ------  mostro il dialog con il timePicker per selezionare un orario e salvarlo
-    public void showATimePicker(View v){
 
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_time_picker);
-
-        final TimePicker timePick = (TimePicker) dialog.findViewById(R.id.timePicker);
-        timePick.setIs24HourView(true);
-
-        Button ok = (Button) dialog.findViewById(R.id.okBTN);
-        Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toHour = timePick.getCurrentHour();
-                toMinute = timePick.getCurrentMinute();
-                to = String.format("%02d", toHour) + ":" + String.format("%02d", toMinute);
-                aBTN.setText(to);
-                dialog.dismiss();
-            }
-        });
-        annulla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-
-            }
-        });
-        dialog.show();
-
-    }
 
 
     public  void mostraCerca(View v){
-        Intent apriRic = new Intent(InserisciRichiesta.this, Richiesta.class);
-        apriRic.putExtra("data",data);
-        apriRic.putExtra("oraInizio",from);
-        apriRic.putExtra("oraFine",to);
-        startActivity(apriRic);
+        data = dateBTN.getText().toString();
+        from =  daBTN.getText().toString();
+        to = aBTN.getText().toString();
+        try{
+            DateFormat sdf = new SimpleDateFormat("hh:mm");
+            Date checkFrom = sdf.parse(from);
+            DateFormat sdf2 = new SimpleDateFormat("hh:mm");
+            Date checkTo = sdf.parse(to);
+            if (checkTo.compareTo(checkFrom) > 0){
+                Intent apriRic = new Intent(InserisciRichiesta.this, Richiesta.class);
+                apriRic.putExtra("data",data);
+                apriRic.putExtra("oraInizio",from);
+                apriRic.putExtra("oraFine",to);
+                startActivity(apriRic);
 
-        Parametri diz = new Parametri("mieRichiesteInserite");
-        diz.value = new String[] { "", data, from, to, specSP.getSelectedItem().toString(), "", "", "", ""};
+                Parametri diz = new Parametri("mieRichiesteInserite");
+                diz.value = new String[] { "", data, from, to, specSP.getSelectedItem().toString(), "", "", "", ""};
 
-        ArrayList<HashMap<String, String>> leMieRic = SharedStorageApp.getInstance().getLeMieRichieste();
-        HashMap<String, String> map = new HashMap<String, String>();
-        for(int i = 0; i < diz.value.length; i++){
-            map.put(diz.keyOfMap[i], diz.value[i]);
+                ArrayList<HashMap<String, String>> leMieRic = SharedStorageApp.getInstance().getLeMieRichieste();
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i = 0; i < diz.value.length; i++){
+                    map.put(diz.keyOfMap[i], diz.value[i]);
+                }
+                leMieRic.add(map);
+            }
+            else{
+                Toast.makeText(this,getResources().getString(R.string.ops_orario),Toast.LENGTH_LONG).show();
+            }
+
+        }catch(ParseException e) {
+            e.printStackTrace();
         }
-        leMieRic.add(map);
+
+
     }
 
 

@@ -1,6 +1,7 @@
 package it.uniba.di.sss1415.medicalmentoring;
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,8 +22,12 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -48,6 +53,8 @@ public class InserisciDisponibilita extends ActionBarActivity {
     int dayFrom = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
     String dataFrom;
 
+    public String dataPicked;
+
     int fromHour = (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1) % 24;
     int fromMinute = 0;
     String timeFrom;
@@ -60,7 +67,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
     RadioButton settimanale;
     RadioButton bisettimanale;
     RadioGroup checkRG;
-    String ripetizione = "";
+    String ripetizione;
 
     int yearTo = yearFrom;
     int monthTo = (monthFrom + 1) % 12;
@@ -72,6 +79,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserisci_disponibilita);
+        ripetizione = getResources().getString(R.string.una_volta).toString();
 
         fromDateBTN = (Button) findViewById(R.id.dateBTN);
         daBTN = (Button) findViewById(R.id.inizioBTN);
@@ -103,11 +111,12 @@ public class InserisciDisponibilita extends ActionBarActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
         //  ------ Salvo le istanze dei bottoni in caso l'activity venga posta in "Landscape"
-        outState.putString("mydataTo", dataTo);
-        outState.putString("mydataFrom", dataFrom);
-        outState.putString("myTimeFrom", timeFrom);
-        outState.putString("myTimeTo", timeTo);
+        outState.putString("mydataTo", toDateBTN.getText().toString());
+        outState.putString("mydataFrom", fromDateBTN.getText().toString());
+        outState.putString("myTimeFrom", daBTN.getText().toString());
+        outState.putString("myTimeTo", aBTN.getText().toString());
 
 
     }
@@ -115,6 +124,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
         // ------ Assegno i valori alle varibili salvate in precedenza
         toDateBTN.setText(savedInstanceState.getString("mydataTo"));
         fromDateBTN.setText(savedInstanceState.getString("mydataFrom"));
@@ -131,6 +141,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
         return true;
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -144,7 +155,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -154,105 +165,31 @@ public class InserisciDisponibilita extends ActionBarActivity {
         switch(view.getId()) {
 
             case R.id.one:
-                if (checked) ripetizione = "una volta";
+                if (checked) ripetizione = getBaseContext().getString(R.string.una_volta);
                 break;
 
             case R.id.onceAWeek:
-                if (checked) ripetizione = "Ogni settimana";
+                if (checked) ripetizione = getBaseContext().getString(R.string.ogni_settimana);
                 break;
 
             case R.id.twiceAWeek:
-                if (checked) ripetizione = "Ogni due settimane";
+                if (checked) ripetizione = getBaseContext().getString(R.string.bisettimanale);
                 break;
         }
     }
 
     public void showDatePicker(View v){
 
-        //  ------ Il metodo mostra il dialog per inserire la data
-        final View callerView = v;
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_date_picker);
+        DialogFragment picker = new DatePickerFragment((Button) v);
+        picker.show(getFragmentManager(), "datePicker");
 
-        final DatePicker datePick = (DatePicker) dialog.findViewById(R.id.datePicker);
-
-        Button ok = (Button) dialog.findViewById(R.id.okBTN);
-        Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(callerView.getId() == fromDateBTN.getId()) {
-                    dayFrom = datePick.getDayOfMonth();
-                    monthFrom = datePick.getMonth() + 1;
-                    yearFrom = datePick.getYear();
-
-                    dataFrom = yearFrom + "-" + String.format("%02d", monthFrom) + "-" + String.format("%02d", dayFrom);
-
-                    fromDateBTN.setText(dataFrom);
-                }else{
-                    dayTo = datePick.getDayOfMonth();
-                    monthTo = datePick.getMonth() + 1;
-                    yearTo = datePick.getYear();
-
-                    dataTo = yearTo + "-" + String.format("%02d", monthTo) + "-" + String.format("%02d", dayTo);
-
-                    toDateBTN.setText(dataTo);
-                }
-
-                dialog.dismiss();
-            }
-        });
-        annulla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
     }
 
 
     public void showTimePicker(View v){
         //  ------ Il metodo mostra il dialog per inserire l'orario
-
-        final View callerView = v;
-
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_time_picker);
-
-        final TimePicker timePick = (TimePicker) dialog.findViewById(R.id.timePicker);
-        timePick.setIs24HourView(true);
-
-        Button ok = (Button) dialog.findViewById(R.id.okBTN);
-        Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(callerView.getId() == daBTN.getId()) {
-                    fromHour = timePick.getCurrentHour();
-                    fromMinute = timePick.getCurrentMinute();
-                    timeFrom = String.format("%02d", fromHour) + ":" + String.format("%02d", fromMinute);
-                    daBTN.setText(timeFrom);
-                }else{
-                    toHour = timePick.getCurrentHour();
-                    toMinute = timePick.getCurrentMinute();
-                    timeTo = String.format("%02d", toHour) + ":" + String.format("%02d", toMinute);
-                    aBTN.setText(timeTo);
-                }
-                dialog.dismiss();
-            }
-        });
-        annulla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-
-            }
-        });
-        dialog.show();
-
+        DialogFragment newFragment = new TimePickerFragment((Button)v);
+        newFragment.show(getFragmentManager(), "TimePicker");
     }
 
     public void inserisciClick(View v){
@@ -260,10 +197,10 @@ public class InserisciDisponibilita extends ActionBarActivity {
         //  ------ Il metodo mostra il dialog per la conferma
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_richiesta);
-        dialog.setTitle("Conferma");
+        dialog.setTitle(getBaseContext().getString(R.string.conferma));
 
         TextView message = (TextView) dialog.findViewById(R.id.richiestaTV);
-        message.setText("Sei sicuro di voler inserire la disponibilità ?");
+        message.setText(getBaseContext().getString(R.string.sei_sicuro_inserire_disp));
         Button ok = (Button) dialog.findViewById(R.id.okBTN);
         Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
 
@@ -272,7 +209,7 @@ public class InserisciDisponibilita extends ActionBarActivity {
             public void onClick(View view) {
                 disponibilitaInviata();
                 dialog.dismiss();
-                finish();
+
             }
         });
         annulla.setOnClickListener(new View.OnClickListener() {
@@ -288,45 +225,67 @@ public class InserisciDisponibilita extends ActionBarActivity {
     public void disponibilitaInviata(){
 
         //  ------ Il metodo invia la disponibilita' appena inserita
+        dataFrom = fromDateBTN.getText().toString();
+        dataTo = toDateBTN.getText().toString();
+        timeFrom = daBTN.getText().toString();
+        timeTo = aBTN.getText().toString();
+        try{
+            DateFormat timeFormat = new SimpleDateFormat("hh:mm");
+            Date checkFrom = timeFormat.parse(timeFrom);
+            Date checkTo = timeFormat.parse(timeTo);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date checkDateFrom = dateFormat.parse(dataFrom);
+            Date checkDateTo = dateFormat.parse(dataTo);
+            if (checkDateTo.compareTo(checkDateFrom) > 0){
+                if(checkTo.compareTo(checkFrom) > 0){
+                    //  ------ Prendo i dati relativi all'utente
+                    DatiUtente datiUser = SharedStorageApp.getInstance().getDatiUtente();
+
+                    //  ------ Creo il dizionario con gli attributi "dispon"
+                    Parametri diz = new Parametri("dispon");
+                    //  ------ Popolo il dizionario creato
+                    diz.value = new String[] {"", dataFrom, timeFrom, timeTo, datiUser.getPrimariaEx(), ripetizione, dataTo, datiUser.getEmail()};
+
+                    //  ------ Genero i parametri relativi ai tipi d'accesso
+                    param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, diz.toJsonObj().toString());
+
+                    //  ------ Mando la richiesta al server con i parametri
+                    String serverAnswer = ServerManager.sendRequest("POST", param);
+
+                    //  ------ Mandiamo la richiesta anche nella sezione relativa alle date disponibili
+                    //  ------ Con i caratteri formattati in base ad essa
+                    Parametri dizDD = new Parametri("dateDisp");
+                    dizDD.value = new String[] {dataFrom, timeFrom, timeTo, datiUser.getNome(), datiUser.getCognome(), datiUser.getScore()};
+                    param = Parametri.generaParametri(TIPO_ELEMENTO_DD, ACCESSO, dizDD.toJsonObj().toString());
+                    ServerManager.sendRequest("POST", param);
 
 
-        //  ------ Prendo i dati relativi all'utente
-        DatiUtente datiUser = SharedStorageApp.getInstance().getDatiUtente();
 
-        //  ------ Creo il dizionario con gli attributi "dispon"
-        Parametri diz = new Parametri("dispon");
-        //  ------ Popolo il dizionario creato
-        diz.value = new String[] {"", dataFrom, timeFrom, timeTo, datiUser.getPrimariaEx(), ripetizione, dataTo, datiUser.getEmail()};
+                    //  ------ Salviamo la disponibilita' in locale per visionarle nelle "Mie Disponibilità"
+                    //  ------ L'operazione d'inserimento sul database non è disponibile,
+                    //  ------ Quindi abbiamo utilizzato una simulazione
+                    ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    for(int i = 0; i < diz.value.length; i++){
+                        map.put(diz.keyOfMap[i], diz.value[i]);
+                    }
+                    leMieDisp.add(map);
 
-        //  ------ Genero i parametri relativi ai tipi d'accesso
-        param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, diz.toJsonObj().toString());
+                    Toast toastMessage = Toast.makeText(getApplicationContext(), R.string.disponibilita_inserita, Toast.LENGTH_LONG);
+                    toastMessage.show();
+                    finish();
 
-        //  ------ Mando la richiesta al server con i parametri
-        String serverAnswer = ServerManager.sendRequest("POST", param);
-
-        //  ------ Mandiamo la richiesta anche nella sezione relativa alle date disponibili
-        //  ------ Con i caratteri formattati in base ad essa
-        Parametri dizDD = new Parametri("dateDisp");
-        dizDD.value = new String[] {dataFrom, timeFrom, timeTo, datiUser.getNome(), datiUser.getCognome(), datiUser.getScore()};
-        param = Parametri.generaParametri(TIPO_ELEMENTO_DD, ACCESSO, dizDD.toJsonObj().toString());
-        ServerManager.sendRequest("POST", param);
-
-
-
-        //  ------ Salviamo la disponibilita' in locale per visionarle nelle "Mie Disponibilità"
-        //  ------ L'operazione d'inserimento sul database non è disponibile,
-        //  ------ Quindi abbiamo utilizzato una simulazione
-        ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();
-        HashMap<String, String> map = new HashMap<String, String>();
-        for(int i = 0; i < diz.value.length; i++){
-            map.put(diz.keyOfMap[i], diz.value[i]);
+                } else {
+                    Toast.makeText(this, getBaseContext().getString(R.string.ops_orario), Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, getBaseContext().getString(R.string.ops_data), Toast.LENGTH_LONG).show();
+            }
+        }catch (ParseException e) {
+            e.printStackTrace();
         }
-        leMieDisp.add(map);
 
 
-
-        Toast toastMessage = Toast.makeText(getApplicationContext(), R.string.disponibilita_inserita, Toast.LENGTH_LONG);
-        toastMessage.show();
     }
 
 }

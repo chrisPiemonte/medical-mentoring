@@ -4,6 +4,13 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+
 /**
  * Created by Chris on 20/07/2015.
  */
@@ -117,6 +124,32 @@ public class Parametri {
         return  j;
     }
 
+    public static void sort(ArrayList<HashMap<String,String>> s){
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataJson;
+        int min = 0 ;
+
+            try {
+
+                for ( int i = 0 ; i < s.size(); i++) {
+                    min = i;
+                    Date minData = timeFormat.parse(s.get(min).get("data"));
+
+                    for(int j = i+1; j < s.size(); j++){
+                        dataJson = timeFormat.parse(s.get(j).get("data"));
+                        if (dataJson.compareTo(minData) < 1) {
+                            minData = dataJson;
+                            min = j;
+                        }
+                    }
+                    Collections.swap(s, i, min);
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+    }
 
 
 }

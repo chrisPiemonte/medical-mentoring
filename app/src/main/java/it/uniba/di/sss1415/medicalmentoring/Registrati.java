@@ -49,7 +49,7 @@ public class Registrati extends ActionBarActivity {
     public DatiUtente datiUser;
 
     //pop up
-    private CharSequence textErrorSignInNotComplete = "Riempire tutti i campi";
+    private CharSequence textErrorSignInNotComplete;
     int duration = Toast.LENGTH_LONG;
     private Toast toastMessage;
 
@@ -57,6 +57,7 @@ public class Registrati extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrati);
+        textErrorSignInNotComplete = getBaseContext().getString(R.string.tutti_campi);
 
         // prendo i dati
         editEmail = (EditText) findViewById(R.id.emailR_TV);
@@ -115,7 +116,7 @@ public class Registrati extends ActionBarActivity {
             SharedStorageApp app = (SharedStorageApp) getApplicationContext();
             app.setDatiUtente(serverAnswer);       // datiUser = new DatiUtente(serverAnswer);
 
-            creaMessaggio("Benvenuto " + "!");
+            creaMessaggio(getBaseContext().getString(R.string.benvenuto) + " " + "!");
             mostraHome();
         }
 

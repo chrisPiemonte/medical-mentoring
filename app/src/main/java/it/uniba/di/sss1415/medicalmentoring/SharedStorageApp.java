@@ -16,6 +16,9 @@ public class SharedStorageApp extends Application {
     private static SharedStorageApp appStorage;
     private ArrayList<HashMap<String, String>> LeMieDisponibilita = new ArrayList<HashMap<String, String>>();
     private ArrayList<HashMap<String, String>> LeMieRichieste = new ArrayList<HashMap<String, String>>();
+    private ArrayList<HashMap<String, String>> MieiAppuntamenti = new ArrayList<HashMap<String, String>>();
+
+
 
     // Returns the application instance
     public static SharedStorageApp getInstance() {
@@ -36,17 +39,45 @@ public class SharedStorageApp extends Application {
         return userData;
     }
 
+
     public ArrayList<HashMap<String, String>> getLeMieDisponibilita(){
         return LeMieDisponibilita;
     }
+
 
     public ArrayList<HashMap<String, String>> getLeMieRichieste(){
         return LeMieRichieste;
     }
 
+
+
+
+    public ArrayList<HashMap<String, String>> getMieiAppuntamenti(){
+        return MieiAppuntamenti;
+    }
+
+    public void addMieiAppuntamenti(HashMap<String, String> map){
+        MieiAppuntamenti.add(map);
+        Parametri.sort(MieiAppuntamenti);
+    }
+
+    public void setMieiAppuntamenti(ArrayList<HashMap<String, String>> map){
+        MieiAppuntamenti = map;
+    }
+
+    public void cleanMieiAppuntamenti(){
+        MieiAppuntamenti = new ArrayList<HashMap<String, String>>();
+    }
+
+
+
     public void cleanLeMieDisponibilita(){
         LeMieDisponibilita = new ArrayList<HashMap<String, String>>();
     }
+
+
+
+
 
     public void cleanLeMieRichieste() {
         LeMieRichieste = new ArrayList<HashMap<String, String>>();

@@ -217,7 +217,7 @@
     <string name="drawer_close">Menu</string>
     <string name="drawer_open">Home</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cognome">Cognome</string>
     <string name="nome">Nome</string>
@@ -257,5 +257,30 @@
     <string name="rifiuta">Rifiuta</string>
     <string name="logout">Logout</string>
 
+
+
+
+    <string name="appuntamenti">APPUNTAMENTI</string>
+    <string name="notifiche">NOTIFICHE</string>
+    <string name="ricevimento_tutoraggio">Ricevimento tutoraggio</string>
+    <string name="conferma">Conferma</string>
+    <string name="sei_sicuro_inserire_disp">Sei sicuro di voler inserire la tua disponibilità ?</string>
+
+    <string name="ops_orario">Ops, orario non valido</string>
+    <string name="ops_data">Ops, data non valida</string>
+    <string name="ops_connection">Connessione fallita</string>
+
+    <string name="ops_login">Username o password errati</string>
+    <string name="ciao">Ciao</string>
+    <string name="oldp">Attenzione, vecchia password sbagliata</string>
+    <string name="newp">O nuova password vuota</string>
+    <string name="cambiap">Cambia password</string>
+    <string name="ins_successo">Inserimento avvenuto con successo</string>
+    <string name="tutti_campi">Riempire tutti i campi</string>
+
+    <string name="benvenuto">Benvenuto</string>
+    <string name="inv_ric_server">Inviare la richiesta al server per la ricerca automatica ?</string>
+    <string name="ric_inviata">Richiesta inviata</string>
+    <string name="nessun_risultato_trovato">Nessun risultato trovato</string>
 
 </resources>

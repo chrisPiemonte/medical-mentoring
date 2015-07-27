@@ -109,7 +109,7 @@ public class Login extends ActionBarActivity {
 
             try {
 
-                creaMessaggio("Ciao " + app.getDatiUtente().getNome() + " !");
+                creaMessaggio(getBaseContext().getString(R.string.ciao) + " " + app.getDatiUtente().getNome() + " !");
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -117,8 +117,8 @@ public class Login extends ActionBarActivity {
             mostraHome();
         }
         else {
-            if (serverAnswer.equals("failed")) textErrorLogin = "Connessione fallita";
-            else textErrorLogin = "Username o password errati!";
+            if (serverAnswer.equals("failed")) textErrorLogin = getBaseContext().getString(R.string.ops_connection);
+            else textErrorLogin = getBaseContext().getString(R.string.ops_login);
 
             //  ------  rendo visibile l'animazione di caricamento
             creaMessaggio(textErrorLogin);
@@ -133,6 +133,7 @@ public class Login extends ActionBarActivity {
     public  void mostraHome(){
         Intent apriHome = new Intent(Login.this, Home.class);
         startActivity(apriHome);
+
     }
 
     public  void mostraReg(View v){

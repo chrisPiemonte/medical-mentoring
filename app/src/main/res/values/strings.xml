@@ -4,11 +4,11 @@
     <string name="action_settings">Settings</string>
 
     <string name="txtEmail">E-mail</string>
-    <string name="txtAnno">Anno iscrizione</string>
-    <string name="txtNumero">Numero iscrizione</string>
-    <string name="txtProv">Provincia iscrizione</string>
-    <string name="txtDatiAlbo">Dati Albo</string>
-    <string name="btnRegistrazione">Registrati</string>
+    <string name="txtAnno">registration year</string>
+    <string name="txtNumero">Registration number</string>
+    <string name="txtProv">province</string>
+    <string name="txtDatiAlbo">Data Medical Register</string>
+    <string name="btnRegistrazione">Sign in</string>
 
     <string-array name="arrayProvince">
         <item>Agrigento (AG)</item>
@@ -184,33 +184,33 @@
 
     <string-array name="arrayDrawerMenu">
 
-        <item>Profilo</item>
-        <item>Le mie Richieste</item>
-        <item>Le mie Disponibilità</item>
+        <item>Profile</item>
+        <item>My request</item>
+        <item>My availability</item>
 
     </string-array>
 
     <string name="serverQuery">http://www.di.uniba.it/~buono/SSS/casidistudio/consulenze/script_php/accessoFile.php</string>
-    <string name="title_activity_profilo">Profilo</string>
-    <string name="txtBtnAppuntamenti">Appuntamenti</string>
-    <string name="txtBtnDisponibilità">Disponibilità</string>
-    <string name="txtBtnGestioneProfilo">Gestisci account</string>
-    <string name="title_activity_appuntamenti">Appuntamenti</string>
-    <string name="title_activity_disponibilita">Disponibilita</string>
-    <string name="title_activity_gestione_account">Gestione Account</string>
+    <string name="title_activity_profilo">Profile</string>
+    <string name="txtBtnAppuntamenti">Appointments</string>
+    <string name="txtBtnDisponibilità">Availability</string>
+    <string name="txtBtnGestioneProfilo">Account</string>
+    <string name="title_activity_appuntamenti">Appointments</string>
+    <string name="title_activity_disponibilita">Availability</string>
+    <string name="title_activity_gestione_account">Account</string>
     <string name="txtBtnAccesso">Login</string>
     <string name="txtViewPassword">Password</string>
     <string name="txtViewUsername">Username</string>
-    <string name="txtViewRegistrati">Registrati</string>
+    <string name="txtViewRegistrati">Sign in</string>
     <string name="email">email</string>
     <string name="password">password</string>
-    <string name="accedi">Accedi</string>
-    <string name="registrati">Registrati</string>
-    <string name="title_activity_registrati">Registrati</string>
+    <string name="accedi">Enter</string>
+    <string name="registrati">Sign in</string>
+    <string name="title_activity_registrati">Sign in</string>
     
     <string name="hello_world">Hello world!</string>
-    <string name="anno_iscrizione">anno iscrizione</string>
-    <string name="numero_iscrizione">numero iscrizione</string>
+    <string name="anno_iscrizione">registration year</string>
+    <string name="numero_iscrizione">registration number</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_calendar">Calendar</string>
 
@@ -219,43 +219,68 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="cognome">Cognome</string>
-    <string name="nome">Nome</string>
-    <string name="informazioni_personali">Dati Anagrafici</string>
-    <string name="informazioni_dottori">Iscrizione all\'albo</string>
-    <string name="specializzazione">Specializzazione</string>
-    <string name="cambia_psw">Cambia Password</string>
-    <string name="modifica">Modifica</string>
+    <string name="cognome">Surname</string>
+    <string name="nome">Name</string>
+    <string name="informazioni_personali">Personal Data</string>
+    <string name="informazioni_dottori">Data Medical Register</string>
+    <string name="specializzazione">Specialization</string>
+    <string name="cambia_psw">Change Password</string>
+    <string name="modifica">Edit</string>
 
-    <string name="sei_sicuro">"Sei sicuro di voler modificare ?"</string>
-    <string name="si">"si"</string>
-    <string name="no">"no"</string>
-    <string name="vecchia_password">Vecchia Password</string>
-    <string name="nuova_password">Nuova Password</string>
-    <string name="annulla">Annulla</string>
+    <string name="sei_sicuro">Are you sure ?</string>
+    <string name="si">yes</string>
+    <string name="no">no</string>
+    <string name="vecchia_password">Old Password</string>
+    <string name="nuova_password">New Password</string>
+    <string name="annulla">Cancel</string>
     <string name="ok">Ok</string>
-    <string name="title_activity_inserisci_richiesta">Inserisci Richiesta</string>
-    <string name="inserisci_dati">Inserisci i Dati</string>
-    <string name="seleziona_data">Scegli una data</string>
-    <string name="da">Da</string>
-    <string name="a">a</string>
-    <string name="orario">Orario</string>
-    <string name="cerca">Cerca</string>
-    <string name="title_activity_richiesta">Richiesta</string>
-    <string name="title_activity_inserisci_disponibilita">Inserisci Disponibilita</string>
-    <string name="una_volta">Una volta</string>
-    <string name="ogni_settimana">Settimanale</string>
-    <string name="bisettimanale">Bisettimanale</string>
-    <string name="fino_a_data">Fino a data</string>
-    <string name="disponibilita_inserita">Disponibilita inserita</string>
-    <string name="inserisci">Inserisci</string>
-    <string name="invia_richiesta">Invia richiesta</string>
-    <string name="Accetta">Accetta</string>
-    <string name="richiesta_in_sospeso">Richiesta in sospeso</string>
-    <string name="title_activity_le_mie_richieste">Le Mie Richieste</string>
-    <string name="title_activity_le_mie_disponibilita">Le Mie Disponibilita</string>
-    <string name="rifiuta">Rifiuta</string>
+    <string name="title_activity_inserisci_richiesta">Insert request</string>
+    <string name="inserisci_dati">Insert personal data</string>
+    <string name="seleziona_data">Choose a date</string>
+    <string name="da">from</string>
+    <string name="a">to</string>
+    <string name="orario">Time</string>
+    <string name="cerca">Search</string>
+    <string name="title_activity_richiesta">Request</string>
+    <string name="title_activity_inserisci_disponibilita">Insert Availability</string>
+    <string name="una_volta">One time</string>
+    <string name="ogni_settimana">Weekly</string>
+    <string name="bisettimanale">Biweekly</string>
+    <string name="fino_a_data">To date</string>
+    <string name="disponibilita_inserita">Inserted Availability</string>
+    <string name="inserisci">Insert</string>
+    <string name="invia_richiesta">Send request</string>
+    <string name="Accetta">Accept</string>
+    <string name="richiesta_in_sospeso">Pending request</string>
+    <string name="title_activity_le_mie_richieste">My Request</string>
+    <string name="title_activity_le_mie_disponibilita">My Availability</string>
+    <string name="rifiuta">Decline</string>
     <string name="logout">Logout</string>
 
+
+
+
+    <string name="appuntamenti">APPOINTMENTS</string>
+    <string name="notifiche">NOTICATIONS</string>
+    <string name="ricevimento_tutoraggio">Receiving tutoring</string>
+    <string name="conferma">Confirm</string>
+    <string name="sei_sicuro_inserire_disp">Are you sure to insert your availability</string>
+
+    <string name="ops_orario">Ops, invalid time</string>
+    <string name="ops_data">Ops, invalid date</string>
+    <string name="ops_connection">Connection failed</string>
+
+    <string name="ops_login">Wrong username or password</string>
+    <string name="ciao">Hello</string>
+    <string name="oldp">Caution, wrong old password</string>
+    <string name="newp">or new password</string>
+    <string name="cambiap">Change password</string>
+    <string name="ins_successo">Insertion successful</string>
+    <string name="tutti_campi">Fill all fields</string>
+
+    <string name="benvenuto">Welcome</string>
+    <string name="inv_ric_server">Send the request to the server for automatic search?</string>
+    <string name="ric_inviata">Request sent</string>
+    <string name="nessun_risultato_trovato">No request found</string>
 
 </resources>

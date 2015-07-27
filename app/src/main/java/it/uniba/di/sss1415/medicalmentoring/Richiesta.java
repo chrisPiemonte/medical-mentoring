@@ -42,18 +42,19 @@ public class Richiesta extends AppCompatActivity {
     public ListAdapter adapter;
 
     //variabili per l utilizzo del dialog
-    final String TEXT = "Inviare la richiesta al server per la ricerca automatica ?";
+    String TEXT = "Inviare la richiesta al server per la ricerca automatica ?";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_richiesta);
+        TEXT = getBaseContext().getString(R.string.inv_ric_server);
 
         //per il dialog
 
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_richiesta);
-        dialog.setTitle("Nessun risultato trovato");
+        dialog.setTitle(getBaseContext().getString(R.string.nessun_risultato_trovato));
         Button ok = (Button) dialog.findViewById(R.id.okBTN);
         Button annulla = (Button) dialog.findViewById(R.id.annullaBTN);
         TextView message = (TextView) dialog.findViewById(R.id.richiestaTV);
@@ -89,7 +90,7 @@ public class Richiesta extends AppCompatActivity {
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getBaseContext(),"Richiesta inviata", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), getBaseContext().getString(R.string.ric_inviata), Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                     finish();
                 }
@@ -167,7 +168,7 @@ public class Richiesta extends AppCompatActivity {
 
     public void inviaRichiesta(View v){
 
-        Toast.makeText(getBaseContext(), "Richiesta Inviata", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), getBaseContext().getString(R.string.ric_inviata), Toast.LENGTH_LONG).show();
         finish();
 
     }

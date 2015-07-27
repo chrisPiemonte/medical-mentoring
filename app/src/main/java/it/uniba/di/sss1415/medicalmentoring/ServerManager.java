@@ -56,7 +56,7 @@ public class ServerManager {
 
                     while( (inputLine = in.readLine()) != null){
                         response.append(inputLine);
-                        System.out.println(inputLine + "----------------------------");
+                        //System.out.println(inputLine + "----------------------------");
                     }
                     in.close();
                     conn.disconnect();

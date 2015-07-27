@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textViewTipoAppuntamento"
             android:textSize="25sp"
-            android:text="Notifica"
+            android:text="@string/ricevimento_tutoraggio"
             android:background="#455A64"
             android:textColor="#FFFFFF"
             android:padding="10dp"

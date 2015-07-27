@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -73,7 +74,7 @@ public class Notifiche extends ListFragment {
 
         String s = "{\"richieste\":[{\"data\":\"2015-02-28\",\"oraInizio\":\"15:00\",\"oraFine\":\"19:00\",\"intervento\":\"Colicisti\",\"dottore\":\"Pinco Panco\"},{\"data\":\"2015-09-10\",\"oraInizio\":\"09:00\",\"oraFine\":\"11:00\",\"intervento\":\"Cardiologia\",\"dottore\":\"Panco Pinco\"}]}";
 
-        Parametri dizUno = new Parametri("richiesteValutare");
+        /*Parametri dizUno = new Parametri("richiesteValutare");
         dizUno.value = new String[]{"2015-02-28", "15:00", "19:00", "Colicisti", "Pinco Panco"};
 
         Parametri dizDue = new Parametri("richiesteValutare");
@@ -89,33 +90,34 @@ public class Notifiche extends ListFragment {
         } catch(Exception e){
             e.printStackTrace();
         }
+        Log.i("PROVA", jObj.toString().replaceAll("\\\\", "") );*/
 
-        Log.i("PROVA", jObj.toString().replaceAll("\\\\", "") );
         listaApp = JSONManager.toListOfMap( s, "richieste" );
-
+        Parametri.sort(listaApp);
 
         //  ------  mostro delle notifiche pervenute simulate
         adapter = new SimpleAdapter(getActivity(),
                 listaApp,
                 R.layout.item_notifica,
-                new String[] {"data","oraInizio","oraFine","intervento","dottore"},
+                new String[] {"data", "oraInizio", "oraFine", "intervento", "dottore"},
                 new int[]{R.id.textViewData, R.id.textViewOraInizio, R.id.textViewOraFine,
                           R.id.textViewIntervento, R.id.textViewDottore});
         setListAdapter(adapter);
 
-
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notifiche, container, false);
     }
+/*
+    public void accetta(View v){
+        int pos = getListView().getPositionForView(v);
+        HashMap<String, String> item = (HashMap<String, String>) adapter.getItem(pos);
 
-    
+        listaApp.remove(pos);
+    }*/
+
 }

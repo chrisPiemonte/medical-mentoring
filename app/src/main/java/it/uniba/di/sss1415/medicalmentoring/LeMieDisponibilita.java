@@ -24,6 +24,7 @@ public class LeMieDisponibilita extends AppCompatActivity {
         //  ------  mostra le dixponibilità inserite e salvate in locale
         list = (ListView) findViewById(R.id.mieDispLV);
         ArrayList<HashMap<String, String>> leMieDisp = SharedStorageApp.getInstance().getLeMieDisponibilita();
+        Parametri.sort(leMieDisp);
 
         adapter = new SimpleAdapter(this,
                 leMieDisp,

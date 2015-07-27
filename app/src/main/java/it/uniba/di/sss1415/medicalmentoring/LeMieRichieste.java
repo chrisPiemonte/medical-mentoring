@@ -24,6 +24,7 @@ public class LeMieRichieste extends AppCompatActivity {
         //  ------  mostra le richieste inserite e salvate in locale
         list = (ListView) findViewById(R.id.leMieRicLV);
         ArrayList<HashMap<String, String>> leMieRic = SharedStorageApp.getInstance().getLeMieRichieste();
+        Parametri.sort(leMieRic);
 
         adapter = new SimpleAdapter(this,
                 leMieRic,

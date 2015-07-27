@@ -22,7 +22,7 @@ public class JSONManager {
 
         JSONArray jArray = null;
         ArrayList<HashMap<String,String>> listaApp = new ArrayList<HashMap<String,String>>();
-        Log.i("JSONMAN_JSON RESULT = ", result);
+        //Log.i("JSONMAN_JSON RESULT = ", result);
 
         try {
 
@@ -46,7 +46,7 @@ public class JSONManager {
                 while(it.hasNext()){
                     String current = (String) it.next();
                     map.put(current, JSONItem.getString(current));
-                    Log.i("JSONMAN_CURRENT = ", current);
+                    //Log.i("JSONMAN_CURRENT = ", current);
                 }
 
                 listaApp.add(map);

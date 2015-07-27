@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -57,12 +58,20 @@ public class Appuntamenti extends ListFragment {
         param = Parametri.generaParametri(TIPO_ELEMENTO, ACCESSO, "");  Log.i("JSON IN RISP = ", "");
         String serverAnswer = ServerManager.sendRequest("POST", param);
 
-        listaApp = JSONManager.toListOfMap(serverAnswer,"appuntamenti");
+        listaApp = SharedStorageApp.getInstance().getMieiAppuntamenti();
+        if ( listaApp.isEmpty() ) {
+            listaApp = JSONManager.toListOfMap(serverAnswer,"appuntamenti");
+            SharedStorageApp.getInstance().setMieiAppuntamenti(listaApp);
+            Parametri.sort(listaApp);
+        }
+
+
+
         // Inserisco i dati nell adapter per visionarli sull activity
         adapter = new SimpleAdapter(getActivity(),
                 listaApp,
                 R.layout.item_appuntamento,
-                new String[] {"data","oraInizio","oraFine","tipoAppuntamento","intervento","dottore"},
+                new String[] {"data", "oraInizio", "oraFine", "tipoAppuntamento", "intervento", "dottore"},
                 new int[]{R.id.textViewData, R.id.textViewOraInizio, R.id.textViewOraFine,
                         R.id.textViewTipoAppuntamento, R.id.textViewIntervento, R.id.textViewDottore});
         setListAdapter(adapter);
